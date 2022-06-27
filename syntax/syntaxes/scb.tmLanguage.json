@@ -40,6 +40,97 @@
 				}
 			}]
 		},
+		"indent3": {
+			"patterns": [{
+				"match": "^(   )([^ ])",
+				"captures" : {
+					"1" : {
+						"name" : "indent.3.scb"
+					},
+					"2" : {
+						"name" : "nohilight.scb"
+					}
+				}
+			}]
+		},
+		"indent4": {
+			"patterns": [{
+				"match": "^(    )([^ ])",
+				"captures" : {
+					"1" : {
+						"name" : "indent.4.scb"
+					},
+					"2" : {
+						"name" : "nohilight.scb"
+					}
+				}
+			}]
+		},
+		"indent5": {
+			"patterns": [{
+				"match": "^(     )([^ ])",
+				"captures" : {
+					"1" : {
+						"name" : "indent.5.scb"
+					},
+					"2" : {
+						"name" : "nohilight.scb"
+					}
+				}
+			}]
+		},
+		"indent6": {
+			"patterns": [{
+				"match": "^(      )([^ ])",
+				"captures" : {
+					"1" : {
+						"name" : "indent.6.scb"
+					},
+					"2" : {
+						"name" : "nohilight.scb"
+					}
+				}
+			}]
+		},
+		"indent7": {
+			"patterns": [{
+				"match": "^(       )([^ ])",
+				"captures" : {
+					"1" : {
+						"name" : "indent.7.scb"
+					},
+					"2" : {
+						"name" : "nohilight.scb"
+					}
+				}
+			}]
+		},
+		"indent8": {
+			"patterns": [{
+				"match": "^(        )([^ ])",
+				"captures" : {
+					"1" : {
+						"name" : "indent.8.scb"
+					},
+					"2" : {
+						"name" : "nohilight.scb"
+					}
+				}
+			}]
+		},
+		"indent9": {
+			"patterns": [{
+				"match": "^([ ]{8}[ ]+)([^ ])",
+				"captures" : {
+					"1" : {
+						"name" : "indent.over9.scb"
+					},
+					"2" : {
+						"name" : "nohilight.scb"
+					}
+				}
+			}]
+		},
 		"link": {
 			"patterns": [{
 				"name": "link.scb",
