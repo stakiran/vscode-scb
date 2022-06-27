@@ -22,5 +22,7 @@ VSCode の再起動をして scb ファイルを開き直す。あるいは ctrl
     "editor.renderWhitespace": "none"
 ```
 
+strikethrough はたぶん 1.36 よりだいぶ後なので対応エンジンは上げた方がいい
+
 ## Author
 [stakiran](https://github.com/stakiran)
