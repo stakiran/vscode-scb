@@ -5,6 +5,12 @@
 	"patterns": [
 		{
 			"include": "#indent1"
+		},
+		{
+			"include": "#indent2"
+		},
+		{
+			"include": "#link"
 		}
 	],
 	"repository": {

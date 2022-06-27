@@ -16,8 +16,8 @@
             {
                 "id": "vscode-scb",
                 "aliases": [
-                    "vscodescb",
-                    "scb"
+                    "VSCODE-SCB",
+                    "Vscode-Scb"
                 ],
                 "extensions": [
                     ".scb"
