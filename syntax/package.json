@@ -1,0 +1,35 @@
+{
+    "name": "vscode-scb",
+    "displayName": "vscode-scb syntax",
+    "description": "vscode-scb syntax definition for .scb files.",
+    "publisher": "stakiran",
+    "repository": "https://github.com/stakiran/vscode-scb",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.36.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "vscode-scb",
+                "aliases": [
+                    "vscodescb",
+                    "scb"
+                ],
+                "extensions": [
+                    ".scb"
+                ]
+            }
+        ],
+        "grammars": [
+            {
+                "language": "scb",
+                "scopeName": "text.scb",
+                "path": "./syntaxes/scb.tmLanguage.json"
+            }
+        ]
+    }
+}

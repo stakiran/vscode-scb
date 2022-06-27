@@ -1,0 +1,21 @@
+{
+    "[scb]": {
+        "editor.quickSuggestions": false
+    },
+    "files.associations": {
+        "*.scb": "vscode-scb"
+    },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "name": "Indent1",
+                "scope": [
+                    "indent.1.scb"
+                ],
+                "settings": {
+                    "background": "#EA9198"
+                }
+            }
+        ]
+    }
+}

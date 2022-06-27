@@ -1,0 +1,18 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "vscode-scb",
+	"scopeName": "text.scb",
+	"patterns": [
+		{
+			"include": "#indent1"
+		}
+	],
+	"repository": {
+		"indent1": {
+			"patterns": [{
+				"name": "indent.1.scb",
+				"match": "^( )"
+			}]
+		}
+	}
+}
