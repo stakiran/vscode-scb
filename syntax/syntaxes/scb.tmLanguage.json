@@ -14,22 +14,22 @@
 		}
 	],
 	"repository": {
-		"indent1": {
+		"link": {
 			"patterns": [{
-				"name": "indent.1.scb",
-				"match": "^( )"
+				"name": "link.scb",
+				"match": "\\[[^\\]]+\\]"
 			}]
 		},
 		"indent2": {
 			"patterns": [{
 				"name": "indent.2.scb",
-				"match": "^(  )"
+				"match": "^(  ).*"
 			}]
 		},
-		"link": {
+		"indent1": {
 			"patterns": [{
-				"name": "link.scb",
-				"match": "\\[[^\\]]+\\]"
+				"name": "indent.1.scb",
+				"match": "^( ).*"
 			}]
 		}
 	}
