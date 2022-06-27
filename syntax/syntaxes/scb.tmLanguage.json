@@ -10,6 +10,27 @@
 			"include": "#indent2"
 		},
 		{
+			"include": "#indent3"
+		},
+		{
+			"include": "#indent4"
+		},
+		{
+			"include": "#indent5"
+		},
+		{
+			"include": "#indent6"
+		},
+		{
+			"include": "#indent7"
+		},
+		{
+			"include": "#indent8"
+		},
+		{
+			"include": "#indent9over"
+		},
+		{
 			"include": "#link"
 		}
 	],
@@ -118,7 +139,7 @@
 				}
 			}]
 		},
-		"indent9": {
+		"indent9over": {
 			"patterns": [{
 				"match": "^([ ]{8}[ ]+)([^ ])",
 				"captures" : {
