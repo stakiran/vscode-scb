@@ -1,19 +1,108 @@
 {
-    "[scb]": {
-        "editor.quickSuggestions": false
-    },
+    "editor.renderWhitespace": "none",
     "files.associations": {
         "*.scb": "vscode-scb"
     },
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
-                "name": "Indent1",
+                "name": "indent1",
                 "scope": [
                     "indent.1.scb"
                 ],
                 "settings": {
-                    "background": "#EA9198"
+                    "foreground": "#ffc0cb",
+                    "fontStyle" : "strikethrough"
+                }
+            },
+            {
+                "name": "indent2",
+                "scope": [
+                    "indent.2.scb"
+                ],
+                "settings": {
+                    "foreground": "#0000ff",
+                    "fontStyle" : "strikethrough"
+                }
+            },
+            {
+                "name": "indent3",
+                "scope": [
+                    "indent.3.scb"
+                ],
+                "settings": {
+                    "foreground": "#2f4f4f",
+                    "fontStyle" : "strikethrough"
+                }
+            },
+            {
+                "name": "indent4",
+                "scope": [
+                    "indent.4.scb"
+                ],
+                "settings": {
+                    "foreground": "#90ee90",
+                    "fontStyle" : "strikethrough"
+                }
+            },
+            {
+                "name": "indent5",
+                "scope": [
+                    "indent.5.scb"
+                ],
+                "settings": {
+                    "foreground": "#fffacd",
+                    "fontStyle" : "strikethrough"
+                }
+            },
+            {
+                "name": "indent6",
+                "scope": [
+                    "indent.6.scb"
+                ],
+                "settings": {
+                    "foreground": "#ffa500",
+                    "fontStyle" : "strikethrough"
+                }
+            },
+            {
+                "name": "indent7",
+                "scope": [
+                    "indent.7.scb"
+                ],
+                "settings": {
+                    "foreground": "#ff0000",
+                    "fontStyle" : "strikethrough"
+                }
+            },
+            {
+                "name": "indent8",
+                "scope": [
+                    "indent.8.scb"
+                ],
+                "settings": {
+                    "foreground": "#ffc0cb",
+                    "fontStyle" : "strikethrough"
+                }
+            },
+            {
+                "name": "indent9over",
+                "scope": [
+                    "indent.over9.scb"
+                ],
+                "settings": {
+                    "foreground": "#d3d3d3",
+                    "fontStyle" : "strikethrough"
+                }
+            },
+            {
+                "name": "link",
+                "scope": [
+                    "link.scb"
+                ],
+                "settings": {
+                    "foreground": "#a9ceec",
+                    "fontStyle" : ""
                 }
             }
         ]
