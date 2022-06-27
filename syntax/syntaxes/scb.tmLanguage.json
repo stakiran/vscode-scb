@@ -17,13 +17,13 @@
 		"indent1": {
 			"patterns": [{
 				"name": "indent.1.scb",
-				"match": "^( )[^ ].*"
+				"match": "^( )[^ ]"
 			}]
 		},
 		"indent2": {
 			"patterns": [{
 				"name": "indent.2.scb",
-				"match": "^(  )[^ ].*"
+				"match": "^(  )[^ ]"
 			}]
 		},
 		"link": {
