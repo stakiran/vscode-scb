@@ -14,15 +14,28 @@
 		}
 	],
 	"repository": {
-		"indent2": {
+		"indent1": {
 			"patterns": [{
-				"match": "^( )( )",
+				"match": "^( )([^ ])",
 				"captures" : {
 					"1" : {
 						"name" : "indent.1.scb"
 					},
 					"2" : {
+						"name" : "nohilight.scb"
+					}
+				}
+			}]
+		},
+		"indent2": {
+			"patterns": [{
+				"match": "^(  )([^ ])",
+				"captures" : {
+					"1" : {
 						"name" : "indent.2.scb"
+					},
+					"2" : {
+						"name" : "nohilight.scb"
 					}
 				}
 			}]
