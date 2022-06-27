@@ -14,16 +14,17 @@
 		}
 	],
 	"repository": {
-		"indent1": {
-			"patterns": [{
-				"name": "indent.1.scb",
-				"match": "^( )[^ ]"
-			}]
-		},
 		"indent2": {
 			"patterns": [{
-				"name": "indent.2.scb",
-				"match": "^(  )[^ ]"
+				"match": "^( )( )",
+				"captures" : {
+					"1" : {
+						"name" : "indent.1.scb"
+					},
+					"2" : {
+						"name" : "indent.2.scb"
+					}
+				}
 			}]
 		},
 		"link": {
