@@ -32,6 +32,9 @@
 		},
 		{
 			"include": "#link"
+		},
+		{
+			"include": "#quote"
 		}
 	],
 	"repository": {
@@ -156,6 +159,12 @@
 			"patterns": [{
 				"name": "link.scb",
 				"match": "\\[[^\\]]+\\]"
+			}]
+		},
+		"quote": {
+			"patterns": [{
+				"name": "quote.line.scb",
+				"match": "^( )*>.+"
 			}]
 		}
 	}
