@@ -35,6 +35,9 @@
 		},
 		{
 			"include": "#quote"
+		},
+		{
+			"include": "#literal"
 		}
 	],
 	"repository": {
@@ -165,6 +168,12 @@
 			"patterns": [{
 				"name": "quote.line.scb",
 				"match": "^( )*>.+"
+			}]
+		},
+		"literal": {
+			"patterns": [{
+				"name": "literal.scb",
+				"match": "`[^`]+`"
 			}]
 		}
 	}
