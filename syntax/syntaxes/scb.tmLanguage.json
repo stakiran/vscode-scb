@@ -170,7 +170,7 @@
 		"quote": {
 			"patterns": [{
 				"name": "quote.line.scb",
-				"match": "^( )*>.+"
+				"match": "^(?=[ ]*)\\>.+"
 			}]
 		},
 		"literal": {
