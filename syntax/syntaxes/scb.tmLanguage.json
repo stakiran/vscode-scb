@@ -62,7 +62,7 @@
 		},
 		"indent2": {
 			"patterns": [{
-				"match": "^(  )([^ ])",
+				"match": "^(  )(?=[^ ])",
 				"captures" : {
 					"1" : {
 						"name" : "indent.2.scb"
@@ -75,7 +75,7 @@
 		},
 		"indent3": {
 			"patterns": [{
-				"match": "^(   )([^ ])",
+				"match": "^(   )(?=[^ ])",
 				"captures" : {
 					"1" : {
 						"name" : "indent.3.scb"
@@ -88,7 +88,7 @@
 		},
 		"indent4": {
 			"patterns": [{
-				"match": "^(    )([^ ])",
+				"match": "^(    )(?=[^ ])",
 				"captures" : {
 					"1" : {
 						"name" : "indent.4.scb"
@@ -101,7 +101,7 @@
 		},
 		"indent5": {
 			"patterns": [{
-				"match": "^(     )([^ ])",
+				"match": "^(     )(?=[^ ])",
 				"captures" : {
 					"1" : {
 						"name" : "indent.5.scb"
@@ -114,7 +114,7 @@
 		},
 		"indent6": {
 			"patterns": [{
-				"match": "^(      )([^ ])",
+				"match": "^(      )(?=[^ ])",
 				"captures" : {
 					"1" : {
 						"name" : "indent.6.scb"
@@ -127,7 +127,7 @@
 		},
 		"indent7": {
 			"patterns": [{
-				"match": "^(       )([^ ])",
+				"match": "^(       )(?=[^ ])",
 				"captures" : {
 					"1" : {
 						"name" : "indent.7.scb"
@@ -140,7 +140,7 @@
 		},
 		"indent8": {
 			"patterns": [{
-				"match": "^(        )([^ ])",
+				"match": "^(        )(?=[^ ])",
 				"captures" : {
 					"1" : {
 						"name" : "indent.8.scb"
@@ -153,7 +153,7 @@
 		},
 		"indent9over": {
 			"patterns": [{
-				"match": "^([ ]{8}[ ]+)([^ ])",
+				"match": "^([ ]{8}[ ]+)(?=[^ ])",
 				"captures" : {
 					"1" : {
 						"name" : "indent.over9.scb"
