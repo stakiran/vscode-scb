@@ -34,6 +34,9 @@
 			"include": "#link"
 		},
 		{
+			"include": "#quote-statement"
+		},
+		{
 			"include": "#quote"
 		},
 		{
@@ -167,11 +170,25 @@
 				"match": "\\[[^\\]]+\\]"
 			}]
 		},
+		"quote-statement": {
+			"begin": "^(?=[ ]*)>",
+			"end": "$",
+			"patterns": [
+				{
+					"include": "#quote"
+				}
+			]
+		},
 		"quote": {
-			"patterns": [{
-				"name": "quote.line.scb",
-				"match": "^(?=[ ]*)\\>.+"
-			}]
+			"begin": ">",
+			"end": "$",
+			"beginCaptures": {
+				"0": { "name": "quote.line.start.scb" }
+			},
+			"endCaptures": {
+				"0": { "name": "quote.line.end.scb" }
+			},
+			"name": "quote.line.scb"
 		},
 		"literal": {
 			"patterns": [{
