@@ -38,6 +38,9 @@
 		},
 		{
 			"include": "#literal"
+		},
+		{
+			"include": "#codeblock"
 		}
 	],
 	"repository": {
@@ -175,6 +178,17 @@
 				"name": "literal.scb",
 				"match": "`[^`]+`"
 			}]
+		},
+		"codeblock": {
+			"begin": "^( )*code\\:.+",
+			"end": "^( )*\\:c",
+			"beginCaptures": {
+				"0": { "name": "codeblock.start.scb" }
+			},
+			"endCaptures": {
+				"0": { "name": "codeblock.end.scb" }
+			},
+			"name": "codeblock.scb"
 		}
 	}
 }
