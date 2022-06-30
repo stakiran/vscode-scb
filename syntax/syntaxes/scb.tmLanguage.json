@@ -180,7 +180,7 @@
 			]
 		},
 		"quote": {
-			"begin": ">",
+			"begin": ">.+",
 			"end": "$",
 			"beginCaptures": {
 				"0": { "name": "quote.line.start.scb" }
