@@ -40,6 +40,9 @@
 			"include": "#literal"
 		},
 		{
+			"include": "#codeblock-statememt"
+		},
+		{
 			"include": "#codeblock"
 		}
 	],
@@ -179,9 +182,18 @@
 				"match": "`[^`]+`"
 			}]
 		},
+		"codeblock-statement": {
+			"begin": "^(?=[ ]*)code\\:",
+			"end": "^(?=[ ]*)\\:c",
+			"patterns": [
+				{
+					"include": "#codeblock"
+				}
+			]
+		},
 		"codeblock": {
-			"begin": "^( )*code\\:.+",
-			"end": "^( )*\\:c",
+			"begin": "code\\:.+",
+			"end": "\\:c",
 			"beginCaptures": {
 				"0": { "name": "codeblock.start.scb" }
 			},
