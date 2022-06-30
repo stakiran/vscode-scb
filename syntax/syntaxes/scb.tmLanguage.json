@@ -197,8 +197,8 @@
 			}]
 		},
 		"codeblock-statement": {
-			"begin": "^(?<=[ ]*)code\\:",
-			"end": "^(?<=[ ]*)\\:c",
+			"begin": "^(?<=[ ]*code\\:)",
+			"end": "^(?<=[ ]*\\:c)",
 			"patterns": [
 				{
 					"include": "#codeblock"
