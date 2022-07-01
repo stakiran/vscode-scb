@@ -172,7 +172,7 @@
 		},
 		"quote-statement": {
 			"begin": "^(?<=[ ]*>)",
-			"end": "$",
+			"end": "\\1.+$",
 			"patterns": [
 				{
 					"include": "#quote"
