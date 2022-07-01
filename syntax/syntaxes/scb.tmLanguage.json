@@ -20,7 +20,7 @@
 		},
 		"line": {
 			"patterns": [
-				{ "include": "#indent" }
+				{ "include": "#indent" },
 				{ "include": "#line-body" }
 			]
 		},
