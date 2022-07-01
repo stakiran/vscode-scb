@@ -4,183 +4,109 @@
 	"scopeName": "text.scb",
 	"patterns": [
 		{
-			"include": "#indent1"
-		},
-		{
-			"include": "#indent2"
-		},
-		{
-			"include": "#indent3"
-		},
-		{
-			"include": "#indent4"
-		},
-		{
-			"include": "#indent5"
-		},
-		{
-			"include": "#indent6"
-		},
-		{
-			"include": "#indent7"
-		},
-		{
-			"include": "#indent8"
-		},
-		{
-			"include": "#indent9over"
-		},
-		{
-			"include": "#link"
-		},
-		{
-			"include": "#quote-statement"
-		},
-		{
-			"include": "#quote"
-		},
-		{
-			"include": "#literal"
-		},
-		{
-			"include": "#codeblock-statememt"
-		},
-		{
-			"include": "#codeblock"
+			"include": "#content"
 		}
 	],
 	"repository": {
+		"content": {
+			"patterns": [{
+				"include": "#lines"
+			}]
+		},
+		"lines": {
+			"patterns": [
+				{ "include": "#line" }
+			]
+		},
+		"line": {
+			"patterns": [
+				{ "include": "#indent" }
+				{ "include": "#line-body" }
+			]
+		},
+
+		"indent": {
+			"patterns": [
+				{ "include": "#indent1" },
+				{ "include": "#indent2" },
+				{ "include": "#indent3" },
+				{ "include": "#indent4" },
+				{ "include": "#indent5" },
+				{ "include": "#indent6" },
+				{ "include": "#indent7" },
+				{ "include": "#indent8" },
+				{ "include": "#indent9over" }
+			]
+		},
 		"indent1": {
 			"patterns": [{
-				"match": "^( )(?=[^ ])",
-				"captures" : {
-					"1" : {
-						"name" : "indent.1.scb"
-					}
-				}
+				"name": "indent.1.scb",
+				"match": "^( )"
 			}]
 		},
 		"indent2": {
 			"patterns": [{
-				"match": "^(  )(?=[^ ])",
-				"captures" : {
-					"1" : {
-						"name" : "indent.2.scb"
-					},
-					"2" : {
-						"name" : "nohilight.scb"
-					}
-				}
+				"name": "indent.2.scb",
+				"match": "^(  )"
 			}]
 		},
 		"indent3": {
 			"patterns": [{
-				"match": "^(   )(?=[^ ])",
-				"captures" : {
-					"1" : {
-						"name" : "indent.3.scb"
-					},
-					"2" : {
-						"name" : "nohilight.scb"
-					}
-				}
+				"name": "indent.3.scb",
+				"match": "^(   )"
 			}]
 		},
 		"indent4": {
 			"patterns": [{
-				"match": "^(    )(?=[^ ])",
-				"captures" : {
-					"1" : {
-						"name" : "indent.4.scb"
-					},
-					"2" : {
-						"name" : "nohilight.scb"
-					}
-				}
+				"name": "indent.4.scb",
+				"match": "^(    )"
 			}]
 		},
 		"indent5": {
 			"patterns": [{
-				"match": "^(     )(?=[^ ])",
-				"captures" : {
-					"1" : {
-						"name" : "indent.5.scb"
-					},
-					"2" : {
-						"name" : "nohilight.scb"
-					}
-				}
+				"name": "indent.5.scb",
+				"match": "^(     )"
 			}]
 		},
 		"indent6": {
 			"patterns": [{
-				"match": "^(      )(?=[^ ])",
-				"captures" : {
-					"1" : {
-						"name" : "indent.6.scb"
-					},
-					"2" : {
-						"name" : "nohilight.scb"
-					}
-				}
+				"name": "indent.6.scb",
+				"match": "^(      )"
 			}]
 		},
 		"indent7": {
 			"patterns": [{
-				"match": "^(       )(?=[^ ])",
-				"captures" : {
-					"1" : {
-						"name" : "indent.7.scb"
-					},
-					"2" : {
-						"name" : "nohilight.scb"
-					}
-				}
+				"name": "indent.7.scb",
+				"match": "^(       )"
 			}]
 		},
 		"indent8": {
 			"patterns": [{
-				"match": "^(        )(?=[^ ])",
-				"captures" : {
-					"1" : {
-						"name" : "indent.8.scb"
-					},
-					"2" : {
-						"name" : "nohilight.scb"
-					}
-				}
+				"name": "indent.8.scb",
+				"match": "^(        )"
 			}]
 		},
 		"indent9over": {
 			"patterns": [{
-				"match": "^([ ]{8}[ ]+)(?=[^ ])",
-				"captures" : {
-					"1" : {
-						"name" : "indent.over9.scb"
-					},
-					"2" : {
-						"name" : "nohilight.scb"
-					}
-				}
+				"name": "indent.over9.scb",
+				"match": "^( ){9,}"
 			}]
 		},
-		"link": {
-			"patterns": [{
-				"name": "link.scb",
-				"match": "\\[[^\\]]+\\]"
-			}]
-		},
-		"quote-statement": {
-			"begin": "^(?<=[ ]*>)",
-			"end": "\\1.+$",
+
+		"line-body": {
 			"patterns": [
-				{
-					"include": "#quote"
-				}
+				{ "include": "#plain-parts" },
+				{ "include": "#quote-parts" }
 			]
 		},
-		"quote": {
-			"begin": ">.+",
+
+		"plain-parts": {
+			"patterns": [
+				{ "include": "#parts" }
+			]
+		},
+		"quote-parts": {
+			"begin": ">",
 			"end": "$",
 			"beginCaptures": {
 				"0": { "name": "quote.line.start.scb" }
@@ -188,7 +114,28 @@
 			"endCaptures": {
 				"0": { "name": "quote.line.end.scb" }
 			},
-			"name": "quote.line.scb"
+			"name": "quote.line.scb",
+			"patterns": [
+				{ "include": "#parts" }
+			]
+		},
+
+		"parts": {
+			"patterns": [
+				{ "include": "#part" }
+			]
+		},
+		"part": {
+			"patterns": [
+				{ "include": "#link" },
+				{ "include": "#literal" }
+			]
+		},
+		"link": {
+			"patterns": [{
+				"name": "link.scb",
+				"match": "\\[[^\\]]+\\]"
+			}]
 		},
 		"literal": {
 			"patterns": [{
@@ -196,25 +143,8 @@
 				"match": "`[^`]+`"
 			}]
 		},
-		"codeblock-statement": {
-			"begin": "^(?<=[ ]*code\\:)",
-			"end": "^(?<=[ ]*\\:c)",
-			"patterns": [
-				{
-					"include": "#codeblock"
-				}
-			]
-		},
-		"codeblock": {
-			"begin": "code\\:.+",
-			"end": "\\:c",
-			"beginCaptures": {
-				"0": { "name": "codeblock.start.scb" }
-			},
-			"endCaptures": {
-				"0": { "name": "codeblock.end.scb" }
-			},
-			"name": "codeblock.scb"
-		}
-	}
+
+		"dummy": {}
+
+	}		
 }
