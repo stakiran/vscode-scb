@@ -27,15 +27,15 @@
 
 		"indent": {
 			"patterns": [
-				{ "include": "#indent1" },
-				{ "include": "#indent2" },
-				{ "include": "#indent3" },
-				{ "include": "#indent4" },
-				{ "include": "#indent5" },
-				{ "include": "#indent6" },
-				{ "include": "#indent7" },
+				{ "include": "#indent9over" },
 				{ "include": "#indent8" },
-				{ "include": "#indent9over" }
+				{ "include": "#indent7" },
+				{ "include": "#indent6" },
+				{ "include": "#indent5" },
+				{ "include": "#indent4" },
+				{ "include": "#indent3" },
+				{ "include": "#indent2" },
+				{ "include": "#indent1" }
 			]
 		},
 		"indent1": {
