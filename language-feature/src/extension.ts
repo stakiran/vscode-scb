@@ -56,6 +56,18 @@ export async function newOrOpen() {
 	vscode.window.showInformationMessage(
 		`今日は${todaystring}です。`
 	);
+
+	// 範囲選択状態だったら、ブラケティングしておしまい
+
+	// url やファイルパスだったらそれを開いておしまい
+
+	// ブラケットの内部かどうか判定して、内部「でない」ならおしまい
+
+	// ブラケット内文字列をファイルとみなして、
+	// 1: windowsで扱えるファイル名に変換
+	// 2: 1のファイルが存在してるか調べて、してるならそれ開いておしまい
+	// 3: 1のファイルを新規して開く
+	//    できれば秀丸エディタみたいに「保存操作するまでファイルが存在しない」にしたい
 }
 
 export function activate(context: vscode.ExtensionContext): void {
