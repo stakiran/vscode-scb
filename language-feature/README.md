@@ -1,5 +1,4 @@
 # vscode-scb-language-features
-★tritaskからコピったばかり。後で直す
 
 ## 開発を始める
 
@@ -14,16 +13,16 @@ $ code .
 ### Debug
 事前準備:
 
-- 1: .trita ファイルを適当に準備する
-- 2: シンタックスハイライト(tritask-basics のインストールと settings.json への記入) を行っておく
-    - これしないと .trita ファイルがシンタックスハイライトされず読みづらいです
+- 1: .scb ファイルを適当に準備する
+- 2: シンタックスハイライト(vscode-scb syntax のインストールと settings.json への記入) を行っておく
+    - これしないと .scb ファイルがシンタックスハイライトされず読みづらいです
 
 デバッグ:
 
 - 1: デバッグペインから Run Extension を選ぶ
 - 2: F5 キーで実行する
 
-実行すると VSCode のウィンドウが新たに立ち上がるので、そのウィンドウで .trita ファイルを開きます。
+実行すると VSCode のウィンドウが新たに立ち上がるので、そのウィンドウで .scb ファイルを開きます。
 
 ### Test
 unittest コードがあります。
@@ -39,7 +38,7 @@ unittest コードがあります。
 ### Lint
 
 ```
-$ npm run lint
+$ npm run lint -s
 ```
 
 ### Pretty source
