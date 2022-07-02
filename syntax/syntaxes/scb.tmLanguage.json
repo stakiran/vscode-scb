@@ -15,7 +15,8 @@
 		},
 		"lines": {
 			"patterns": [
-				{ "include": "#line" }
+				{ "include": "#line" },
+				{ "include": "#block" }
 			]
 		},
 		"line": {
@@ -24,6 +25,12 @@
 				{ "include": "#line-body" }
 			]
 		},
+		"block": {
+			"patterns": [
+				{ "include": "#codeblock" }
+			]
+		},
+
 
 		"indent": {
 			"patterns": [
@@ -98,6 +105,12 @@
 				{ "include": "#plain-parts" },
 				{ "include": "#quote-parts" }
 			]
+		},
+
+		"codeblock": {
+			"begin": "(?<=^( )*)code\\:",
+			"end": "\\:c",
+			"name": "block.code.scb"
 		},
 
 		"plain-parts": {
