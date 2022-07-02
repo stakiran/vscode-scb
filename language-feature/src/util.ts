@@ -26,23 +26,20 @@ class DateTimeUtil {
 	}
 }
 
-function fixInvalidFilename(filename: string){
-    let newFilename = filename;
-    const after = '_'
-    newFilename = newFilename.replace('\\', after);
-    newFilename = newFilename.replace('/', after);
-    newFilename = newFilename.replace(':', after);
-    newFilename = newFilename.replace('*', after);
-    newFilename = newFilename.replace('?', after);
-    newFilename = newFilename.replace('"', after);
-    newFilename = newFilename.replace('>', after);
-    newFilename = newFilename.replace('<', after);
-    newFilename = newFilename.replace('|', after);
-    // スペースはファイル名としては有効だが何かとウザイので潰す
-    newFilename = newFilename.replace(' ', after);
+function fixInvalidFilename(filename: string) {
+	let newFilename = filename;
+	const after = '_';
+	newFilename = newFilename.replace('\\', after);
+	newFilename = newFilename.replace('/', after);
+	newFilename = newFilename.replace(':', after);
+	newFilename = newFilename.replace('*', after);
+	newFilename = newFilename.replace('?', after);
+	newFilename = newFilename.replace('"', after);
+	newFilename = newFilename.replace('>', after);
+	newFilename = newFilename.replace('<', after);
+	newFilename = newFilename.replace('|', after);
+	// スペースはファイル名としては有効だが何かとウザイので潰す
+	newFilename = newFilename.replace(' ', after);
 }
 
-export {
-    DateTimeUtil,
-    fixInvalidFilename,
-};
+export { DateTimeUtil, fixInvalidFilename };

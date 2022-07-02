@@ -69,7 +69,7 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile",
 		"lint": "eslint --ext .ts ./src",
-		"pretty": "prettier ./src/extension.ts --write"
+		"pretty": "prettier ./src/*.ts --write"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.3",
