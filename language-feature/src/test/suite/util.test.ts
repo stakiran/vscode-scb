@@ -24,5 +24,12 @@ suite('', () => {
 			fixInvalidFilename('"c:\\Windows\\System32"'),
 		);
 	});
+	test('fixInvalidFilename 複数回置換の全パターン', async () => {
+		const s = '_'.repeat(30);
+		eq(
+			`${s}.scb`,
+			fixInvalidFilename(' \\/:*?"<>|\\/:*?"<>|\\/:*?"<>|  .scb'),
+		);
+	});
 });
 
