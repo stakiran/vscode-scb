@@ -82,8 +82,10 @@ export async function hello() {
 			return false;
 		}
 		const inputText = inputTextMaybe;
-		const todaystring = DateTimeUtil.todayString()
-		vscode.window.showInformationMessage(`あなたが入力したのは${inputText}ですね？ in ${todaystring}`);
+		const todaystring = DateTimeUtil.todayString();
+		vscode.window.showInformationMessage(
+			`あなたが入力したのは${inputText}ですね？ in ${todaystring}`
+		);
 	});
 }
 
@@ -97,8 +99,5 @@ export function activate(context: vscode.ExtensionContext): void {
 		hello();
 	});
 
-	context.subscriptions.push(
-		_dummy_for_menu_separator,
-		_hello,
-	);
+	context.subscriptions.push(_dummy_for_menu_separator, _hello);
 }
