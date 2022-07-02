@@ -75,18 +75,13 @@ function showMenu() {
 	vscode.commands.executeCommand('editor.action.showContextMenu');
 }
 
-export async function hello() {
-	const promise = input('Say hello!');
-	return promise.then((inputTextMaybe) => {
-		if (inputTextMaybe === undefined) {
-			return false;
-		}
-		const inputText = inputTextMaybe;
-		const todaystring = DateTimeUtil.todayString();
-		vscode.window.showInformationMessage(
-			`あなたが入力したのは${inputText}ですね？ in ${todaystring}`
-		);
-	});
+export async function newOrOpen() {
+	showMenu();
+
+	const todaystring = DateTimeUtil.todayString();
+	vscode.window.showInformationMessage(
+		`今日は${todaystring}です。`
+	);
 }
 
 export function activate(context: vscode.ExtensionContext): void {
@@ -95,9 +90,9 @@ export function activate(context: vscode.ExtensionContext): void {
 		() => {} // eslint-disable-line @typescript-eslint/no-empty-function
 	);
 
-	const _hello = vscode.commands.registerCommand('vscodescb.hello', () => {
-		hello();
+	const _new_or_open = vscode.commands.registerCommand('vscodescb.neworopen', () => {
+		newOrOpen();
 	});
 
-	context.subscriptions.push(_dummy_for_menu_separator, _hello);
+	context.subscriptions.push(_dummy_for_menu_separator, _new_or_open);
 }
