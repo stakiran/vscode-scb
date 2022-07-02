@@ -1,10 +1,9 @@
 import * as vscode from 'vscode';
 
-import * as moment from 'moment';
 import * as child_process from 'child_process';
 const exec = child_process.exec;
 
-moment.locale('ja');
+import * as util from './util';
 
 const isMacOS = process.platform == 'darwin';
 const SELF_EXTENSION_ID = 'stakiran.vscodescb-language-features';
@@ -46,31 +45,6 @@ export function getEditor() {
 	return editor;
 }
 
-class DateTime {
-	private _momentinst: moment.Moment;
-	private _format: string;
-
-	public constructor() {
-		this._momentinst = moment();
-		this._format = 'YYYY/MM/DD';
-	}
-
-	public toString() {
-		return this._momentinst.format(this._format);
-	}
-}
-
-class DateTimeUtil {
-	static todayString(): string {
-		const dtobj = new DateTime();
-		return dtobj.toString();
-	}
-
-	static nowtimeString(): string {
-		return moment().format('HH:mm');
-	}
-}
-
 function showMenu() {
 	vscode.commands.executeCommand('editor.action.showContextMenu');
 }
@@ -78,7 +52,7 @@ function showMenu() {
 export async function newOrOpen() {
 	showMenu();
 
-	const todaystring = DateTimeUtil.todayString();
+	const todaystring = util.DateTimeUtil.todayString();
 	vscode.window.showInformationMessage(
 		`今日は${todaystring}です。`
 	);
