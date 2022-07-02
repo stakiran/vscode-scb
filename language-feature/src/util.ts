@@ -26,4 +26,4 @@ class DateTimeUtil {
 	}
 }
 
-export default DateTimeUtil;
+export {DateTimeUtil};
