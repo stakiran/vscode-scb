@@ -53,9 +53,7 @@ export async function newOrOpen() {
 	showMenu();
 
 	const todaystring = util.DateTimeUtil.todayString();
-	vscode.window.showInformationMessage(
-		`今日は${todaystring}です。`
-	);
+	vscode.window.showInformationMessage(`今日は${todaystring}です。`);
 
 	// 範囲選択状態だったら、ブラケティングしておしまい
 
@@ -76,9 +74,12 @@ export function activate(context: vscode.ExtensionContext): void {
 		() => {} // eslint-disable-line @typescript-eslint/no-empty-function
 	);
 
-	const _new_or_open = vscode.commands.registerCommand('vscodescb.neworopen', () => {
-		newOrOpen();
-	});
+	const _new_or_open = vscode.commands.registerCommand(
+		'vscodescb.neworopen',
+		() => {
+			newOrOpen();
+		}
+	);
 
 	context.subscriptions.push(_dummy_for_menu_separator, _new_or_open);
 }
