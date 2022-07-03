@@ -179,19 +179,16 @@ async function openLinkIfPossible() {
 	);
 }
 
-async function smartopenIfDoesnotExists(filepath: string){
-	const smartopen = vscode.Uri.file(filepath).with({ scheme: 'untitled' })
+async function smartopenIfDoesnotExists(filepath: string) {
+	const smartopen = vscode.Uri.file(filepath).with({ scheme: 'untitled' });
 	const promise = vscode.workspace.openTextDocument(smartopen);
-	return promise.then(
-		vscode.window.showTextDocument,
-		() => {
-			// 既存ファイルだった場合はこっちに来る（失敗扱いになる）
-			return false;
-		}
-	);
+	return promise.then(vscode.window.showTextDocument, () => {
+		// 既存ファイルだった場合はこっちに来る（失敗扱いになる）
+		return false;
+	});
 }
 
-async function openExistingFile(filepath: string){
+async function openExistingFile(filepath: string) {
 	const uri = vscode.Uri.file(filepath);
 	const textdocument = await vscode.workspace.openTextDocument(uri);
 	await vscode.window.showTextDocument(textdocument);
@@ -232,7 +229,7 @@ export async function newOrOpen() {
 	// スマートオープン(保存操作するまでファイルが存在しない)を使う。
 	const targetFullpath = constructTargetScbFullpath(emptyOrBetweenString);
 	const okSmartOpen = await smartopenIfDoesnotExists(targetFullpath);
-	if(okSmartOpen){
+	if (okSmartOpen) {
 		return Promise.resolve(true);
 	}
 	await openExistingFile(targetFullpath);
