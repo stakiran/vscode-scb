@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-import * as path from 'path'
+import * as path from 'path';
 
 import * as util from './util';
 
@@ -132,13 +132,16 @@ function getStringBetweenBracket() {
 	return betweenString;
 }
 
-function constructTargetScbFullpath(maybeOpeneeFilename: string){
+function constructTargetScbFullpath(maybeOpeneeFilename: string) {
 	const openeeFilename = util.fixInvalidFilename(maybeOpeneeFilename);
 	const fullpathOfCurrentScbFile = getFullpathOfActiveTextEditor();
 
-	const directoryOfCurrentScbFile = path.dirname(fullpathOfCurrentScbFile)
+	const directoryOfCurrentScbFile = path.dirname(fullpathOfCurrentScbFile);
 
-	const fullpath_without_ext = path.join(directoryOfCurrentScbFile, openeeFilename);
+	const fullpath_without_ext = path.join(
+		directoryOfCurrentScbFile,
+		openeeFilename
+	);
 	const fullpath = `${fullpath_without_ext}.scb`;
 	return fullpath;
 }
@@ -186,26 +189,34 @@ export async function newOrOpen() {
 	//   だけど仕様で「開けた」を検出できないのでおしまいにできない。
 	//   が、開けた場合はブラケット内にいないはずなので下記の処理も通らないはず、
 	//   というわけでスルーでいいと判断。
+	//
+	// と思ったけど、一部通っちゃうパターンがあるのでガード処理書いた。
 	await openLinkIfPossible();
 
 	// ブラケットの内部かどうか判定して、内部「でない」ならおしまい
 	const emptyOrBetweenString = getStringBetweenBracket();
-	if(emptyOrBetweenString == ""){
-		return Promise.resolve(true);	
+	if (emptyOrBetweenString == '') {
+		return Promise.resolve(true);
 	}
 
 	// 以下はガードしたい
-	// [text url]
-	// [url text]
-	// [https://...]
-	// [file://...]
+	//   [text url]
+	//   [url text]
+	//   [https://...]
+	//   [file://...]
+	//   [* xxx] ★こういう装飾系は今は扱ってないので無視
+	// おそらく url が含まれていたらガードすれば良さそう。
+	// url 判定は :// の有無、くらいで良いと思う。
+	if (emptyOrBetweenString.indexOf('://') != -1) {
+		return Promise.resolve(true);
+	}
 
 	// ブラケット内文字列をファイルとみなして、
 	// 1: windowsで扱えるファイル名に変換
 	// 2: 1のファイルが存在してるか調べて、してるならそれ開いておしまい
 	// 3: 1のファイルを新規して開く
 	//    できれば秀丸エディタみたいに「保存操作するまでファイルが存在しない」にしたい
-	const targetFullpath = constructTargetScbFullpath(emptyOrBetweenString)
+	const targetFullpath = constructTargetScbFullpath(emptyOrBetweenString);
 	console.log(targetFullpath);
 
 	return Promise.resolve(true);
