@@ -198,7 +198,6 @@ export async function newOrOpen() {
 	if (emptyOrBetweenString == '') {
 		return Promise.resolve(true);
 	}
-
 	// 以下はガードしたい
 	//   [text url]
 	//   [url text]
@@ -211,11 +210,8 @@ export async function newOrOpen() {
 		return Promise.resolve(true);
 	}
 
-	// ブラケット内文字列をファイルとみなして、
-	// 1: windowsで扱えるファイル名に変換
-	// 2: 1のファイルが存在してるか調べて、してるならそれ開いておしまい
-	// 3: 1のファイルを新規して開く
-	//    できれば秀丸エディタみたいに「保存操作するまでファイルが存在しない」にしたい
+	// ブラケット内文字列をファイルとみなして、オープンする。
+	// スマートオープン(保存操作するまでファイルが存在しない)を使う。
 	const targetFullpath = constructTargetScbFullpath(emptyOrBetweenString);
 	const smartopen = vscode.Uri.file(targetFullpath).with({ scheme: 'untitled' })
 	vscode.workspace.openTextDocument(smartopen);
