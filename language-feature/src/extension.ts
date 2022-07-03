@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 
-import * as child_process from 'child_process';
-const exec = child_process.exec;
+import * as path from 'path'
 
 import * as util from './util';
 
@@ -26,6 +25,11 @@ export function getSelfDirectory() {
 	}
 	const selfDir = selfExtension.extensionPath;
 	return selfDir;
+}
+function getFullpathOfActiveTextEditor() {
+	const editor = getEditor();
+	const fullpath = editor.document.uri.fsPath;
+	return fullpath;
 }
 
 export function getEditor() {
@@ -128,6 +132,17 @@ function getStringBetweenBracket() {
 	return betweenString;
 }
 
+function constructTargetScbFullpath(maybeOpeneeFilename: string){
+	const openeeFilename = util.fixInvalidFilename(maybeOpeneeFilename);
+	const fullpathOfCurrentScbFile = getFullpathOfActiveTextEditor();
+
+	const directoryOfCurrentScbFile = path.dirname(fullpathOfCurrentScbFile)
+
+	const fullpath_without_ext = path.join(directoryOfCurrentScbFile, openeeFilename);
+	const fullpath = `${fullpath_without_ext}.scb`;
+	return fullpath;
+}
+
 async function doBracketBasedOnCurrentPosition() {
 	// 手抜きだが以下、単一行選択がされていると仮定しちゃう。
 
@@ -175,13 +190,23 @@ export async function newOrOpen() {
 
 	// ブラケットの内部かどうか判定して、内部「でない」ならおしまい
 	const emptyOrBetweenString = getStringBetweenBracket();
-	console.log(`"${emptyOrBetweenString}"`);
+	if(emptyOrBetweenString == ""){
+		return Promise.resolve(true);	
+	}
+
+	// 以下はガードしたい
+	// [text url]
+	// [url text]
+	// [https://...]
+	// [file://...]
 
 	// ブラケット内文字列をファイルとみなして、
 	// 1: windowsで扱えるファイル名に変換
 	// 2: 1のファイルが存在してるか調べて、してるならそれ開いておしまい
 	// 3: 1のファイルを新規して開く
 	//    できれば秀丸エディタみたいに「保存操作するまでファイルが存在しない」にしたい
+	const targetFullpath = constructTargetScbFullpath(emptyOrBetweenString)
+	console.log(targetFullpath);
 
 	return Promise.resolve(true);
 }
