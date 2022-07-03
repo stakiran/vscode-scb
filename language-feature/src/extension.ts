@@ -217,7 +217,8 @@ export async function newOrOpen() {
 	// 3: 1のファイルを新規して開く
 	//    できれば秀丸エディタみたいに「保存操作するまでファイルが存在しない」にしたい
 	const targetFullpath = constructTargetScbFullpath(emptyOrBetweenString);
-	console.log(targetFullpath);
+	const smartopen = vscode.Uri.file(targetFullpath).with({ scheme: 'untitled' })
+	vscode.workspace.openTextDocument(smartopen);
 
 	return Promise.resolve(true);
 }
