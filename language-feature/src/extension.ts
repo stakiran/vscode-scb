@@ -183,13 +183,12 @@ async function smartopenIfDoesnotExists(filepath: string){
 	const smartopen = vscode.Uri.file(filepath).with({ scheme: 'untitled' })
 	const promise = vscode.workspace.openTextDocument(smartopen);
 	return promise.then(
-		(resolved) => {
-			console.log(resolved);
+		() => {
 			return true;
 		},
-		(rejected) => {
-			console.log(rejected);
-			return true;
+		() => {
+			// 既存ファイルだった場合はこっちに来る（失敗扱いになる）
+			return false;
 		}
 	);
 
@@ -229,7 +228,11 @@ export async function newOrOpen() {
 	// ブラケット内文字列をファイルとみなして、オープンする。
 	// スマートオープン(保存操作するまでファイルが存在しない)を使う。
 	const targetFullpath = constructTargetScbFullpath(emptyOrBetweenString);
-	await smartopenIfDoesnotExists(targetFullpath);
+	const doneNormally = await smartopenIfDoesnotExists(targetFullpath);
+	if(doneNormally){
+		return Promise.resolve(true);
+	}
+	console.log('普通にopenしないといけませんねぇ')
 
 	return Promise.resolve(true);
 }
