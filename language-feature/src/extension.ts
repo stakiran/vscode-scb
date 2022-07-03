@@ -179,6 +179,22 @@ async function openLinkIfPossible() {
 	);
 }
 
+async function smartopenIfDoesnotExists(filepath: string){
+	const smartopen = vscode.Uri.file(filepath).with({ scheme: 'untitled' })
+	const promise = vscode.workspace.openTextDocument(smartopen);
+	return promise.then(
+		(resolved) => {
+			console.log(resolved);
+			return true;
+		},
+		(rejected) => {
+			console.log(rejected);
+			return true;
+		}
+	);
+
+}
+
 export async function newOrOpen() {
 	// 範囲選択状態だったら、ブラケティングしておしまい
 	if (isSelectedSingleLine()) {
@@ -213,8 +229,7 @@ export async function newOrOpen() {
 	// ブラケット内文字列をファイルとみなして、オープンする。
 	// スマートオープン(保存操作するまでファイルが存在しない)を使う。
 	const targetFullpath = constructTargetScbFullpath(emptyOrBetweenString);
-	const smartopen = vscode.Uri.file(targetFullpath).with({ scheme: 'untitled' })
-	vscode.workspace.openTextDocument(smartopen);
+	await smartopenIfDoesnotExists(targetFullpath);
 
 	return Promise.resolve(true);
 }
