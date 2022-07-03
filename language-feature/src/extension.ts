@@ -15,7 +15,7 @@ function abort(message: string) {
 }
 
 function infoDialog(message: string) {
-	vscode.window.showInformationMessage(message);		
+	vscode.window.showInformationMessage(message);
 }
 
 export function getSelfDirectory() {
@@ -37,7 +37,7 @@ export function getEditor() {
 	return editor;
 }
 
-function getCurrentLine(){
+function getCurrentLine() {
 	const editor = getEditor();
 	const doc = editor.document;
 	const currentLine = doc.lineAt(CursorPositioner.current()).text;
@@ -74,7 +74,7 @@ function isSelectedSingleLine() {
 	return false;
 }
 
-async function doBracketBasedOnCurrentPosition(){
+async function doBracketBasedOnCurrentPosition() {
 	const curSel = CursorPositioner.currentSelection();
 
 	// 手抜きだが以下、単一行選択がされていると仮定しちゃう。
@@ -96,13 +96,30 @@ async function doBracketBasedOnCurrentPosition(){
 	});
 }
 
+async function openLinkIfPossible() {
+	const promise = vscode.commands.executeCommand('editor.action.openLink');
+	return promise.then(
+		() => {
+			// 上手く判定してくれると思ったけど、常にこっちに来るみたい……
+			return true;
+		},
+		() => {
+			throw new Error('こっちには来ないみたいでーす in openlinkifpossible');
+		}
+	);
+}
+
 export async function newOrOpen() {
 	// 範囲選択状態だったら、ブラケティングしておしまい
-	if(isSelectedSingleLine()){
+	if (isSelectedSingleLine()) {
 		return doBracketBasedOnCurrentPosition();
 	}
 
-	// url やファイルパスだったらそれを開いておしまい
+	// url やファイルパスだったらそれを開いておしまい……
+	// だけど仕様で「開けた」を検出できないのでおしまいにできない。
+	// が、開けた場合はブラケット内にいないはずなので下記の処理も通らないはず、
+	// というわけでスルーでいいと判断。
+	await openLinkIfPossible();
 
 	// ブラケットの内部かどうか判定して、内部「でない」ならおしまい
 

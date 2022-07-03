@@ -40,7 +40,7 @@ function fixInvalidFilename(filename: string) {
 	newFilename = newFilename.replace(/\|/g, after);
 	// スペースはファイル名としては有効だが何かとウザイので潰す
 	newFilename = newFilename.replace(/ /g, after);
-    return newFilename;
+	return newFilename;
 }
 
 export { DateTimeUtil, fixInvalidFilename };
