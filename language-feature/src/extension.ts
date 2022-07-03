@@ -75,6 +75,15 @@ function isSelectedSingleLine() {
 }
 
 function getStringBetweenBracket() {
+	// 処理はだいぶ甘い。たとえば以下のケースも検出されてしまう。
+	//   [google http:/...] これも検出される
+	//   `リテラルの中の[リンク]` これも検出される
+	//   コードブロック中でも検出される etc
+	// が、回避手段はなさそう
+	//   たとえば textmate scope を取得する VSCode API はなさそう
+	//
+	// まあ上記のケースで new or open 操作することも普通はないだろうから甘くていいか。
+
 	const curPos = CursorPositioner.current();
 	const curX = curPos.character;
 	const currentLine = getCurrentLine();
@@ -159,20 +168,14 @@ export async function newOrOpen() {
 	}
 
 	// url やファイルパスだったらそれを開いておしまい……
-	// だけど仕様で「開けた」を検出できないのでおしまいにできない。
-	// が、開けた場合はブラケット内にいないはずなので下記の処理も通らないはず、
-	// というわけでスルーでいいと判断。
+	//   だけど仕様で「開けた」を検出できないのでおしまいにできない。
+	//   が、開けた場合はブラケット内にいないはずなので下記の処理も通らないはず、
+	//   というわけでスルーでいいと判断。
 	await openLinkIfPossible();
 
 	// ブラケットの内部かどうか判定して、内部「でない」ならおしまい
 	const emptyOrBetweenString = getStringBetweenBracket();
 	console.log(`"${emptyOrBetweenString}"`);
-	// まだちょっと甘い...
-	// [google http:/...] これも検出される
-	// `リテラルの中の[リンク]` これも検出される
-	// コードブロック中でも検出される etc
-	// 
-	// textmate scope を取得するAPI？があれば精度高い判定できるんだけど……
 
 	// ブラケット内文字列をファイルとみなして、
 	// 1: windowsで扱えるファイル名に変換
