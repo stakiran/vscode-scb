@@ -74,9 +74,52 @@ function isSelectedSingleLine() {
 	return false;
 }
 
-async function doBracketBasedOnCurrentPosition() {
-	const curSel = CursorPositioner.currentSelection();
+function getStringBetweenBracket() {
+	const curPos = CursorPositioner.current();
+	const curX = curPos.character;
+	const currentLine = getCurrentLine();
 
+	let leftpos = -1;
+	let rightpos = -1;
+	// <-- 方向に [ がないかを調べる
+	let foundLeft = false;
+	for (let x = curX - 1; x >= 0; x--) {
+		const c = currentLine.charAt(x);
+		if (c == ']') {
+			break;
+		}
+		if (c == '[') {
+			foundLeft = true;
+			leftpos = x;
+			break;
+		}
+	}
+	// --> 方向に ] がないかを調べる
+	let foundRight = false;
+	for (let x = curX + 1; x < currentLine.length; x++) {
+		const c = currentLine.charAt(x);
+		if (c == '[') {
+			break;
+		}
+		if (c == ']') {
+			foundRight = true;
+			rightpos = x;
+			break;
+		}
+	}
+
+	const RESULT_IN_CASE_OF_NOTFOUND = '';
+	if (!foundLeft) {
+		return RESULT_IN_CASE_OF_NOTFOUND;
+	}
+	if (!foundRight) {
+		return RESULT_IN_CASE_OF_NOTFOUND;
+	}
+	const betweenString = currentLine.substring(leftpos + 1, rightpos);
+	return betweenString;
+}
+
+async function doBracketBasedOnCurrentPosition() {
 	// 手抜きだが以下、単一行選択がされていると仮定しちゃう。
 
 	const curRange = CursorPositioner.rangeBetweenCurrentSelection();
@@ -122,6 +165,14 @@ export async function newOrOpen() {
 	await openLinkIfPossible();
 
 	// ブラケットの内部かどうか判定して、内部「でない」ならおしまい
+	const emptyOrBetweenString = getStringBetweenBracket();
+	console.log(`"${emptyOrBetweenString}"`);
+	// まだちょっと甘い...
+	// [google http:/...] これも検出される
+	// `リテラルの中の[リンク]` これも検出される
+	// コードブロック中でも検出される etc
+	// 
+	// textmate scope を取得するAPI？があれば精度高い判定できるんだけど……
 
 	// ブラケット内文字列をファイルとみなして、
 	// 1: windowsで扱えるファイル名に変換
