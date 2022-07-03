@@ -183,9 +183,7 @@ async function smartopenIfDoesnotExists(filepath: string){
 	const smartopen = vscode.Uri.file(filepath).with({ scheme: 'untitled' })
 	const promise = vscode.workspace.openTextDocument(smartopen);
 	return promise.then(
-		() => {
-			return true;
-		},
+		vscode.window.showTextDocument,
 		() => {
 			// 既存ファイルだった場合はこっちに来る（失敗扱いになる）
 			return false;
