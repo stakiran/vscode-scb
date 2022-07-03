@@ -3,6 +3,13 @@
     "files.associations": {
         "*.scb": "vscode-scb"
     },
+    "[vscode-scb]": {
+        "editor.renderWhitespace": "none",
+        "editor.tabSize": 1,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "editor.wordBasedSuggestions": false
+    },
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
@@ -11,7 +18,7 @@
                     "indent.1.scb"
                 ],
                 "settings": {
-                    "foreground": "#ffc0cb",
+                    "foreground": "#add8e6",
                     "fontStyle" : "strikethrough"
                 }
             },
@@ -21,7 +28,7 @@
                     "indent.2.scb"
                 ],
                 "settings": {
-                    "foreground": "#0000ff",
+                    "foreground": "#ffb6c1",
                     "fontStyle" : "strikethrough"
                 }
             },
@@ -31,7 +38,7 @@
                     "indent.3.scb"
                 ],
                 "settings": {
-                    "foreground": "#2f4f4f",
+                    "foreground": "#ffffe0",
                     "fontStyle" : "strikethrough"
                 }
             },
@@ -51,7 +58,7 @@
                     "indent.5.scb"
                 ],
                 "settings": {
-                    "foreground": "#fffacd",
+                    "foreground": "#add8e6",
                     "fontStyle" : "strikethrough"
                 }
             },
@@ -61,7 +68,7 @@
                     "indent.6.scb"
                 ],
                 "settings": {
-                    "foreground": "#ffa500",
+                    "foreground": "#ffb6c1",
                     "fontStyle" : "strikethrough"
                 }
             },
@@ -71,7 +78,7 @@
                     "indent.7.scb"
                 ],
                 "settings": {
-                    "foreground": "#ff0000",
+                    "foreground": "#ffffe0",
                     "fontStyle" : "strikethrough"
                 }
             },
@@ -81,7 +88,7 @@
                     "indent.8.scb"
                 ],
                 "settings": {
-                    "foreground": "#ffc0cb",
+                    "foreground": "#90ee90",
                     "fontStyle" : "strikethrough"
                 }
             },
@@ -91,7 +98,7 @@
                     "indent.over9.scb"
                 ],
                 "settings": {
-                    "foreground": "#d3d3d3",
+                    "foreground": "#add8e6",
                     "fontStyle" : "strikethrough"
                 }
             },
@@ -102,6 +109,36 @@
                 ],
                 "settings": {
                     "foreground": "#a9ceec",
+                    "fontStyle" : ""
+                }
+            },
+            {
+                "name": "quote",
+                "scope": [
+                    "quote.line.scb"
+                ],
+                "settings": {
+                    "foreground": "#c0c0c0",
+                    "fontStyle" : "italic bold"
+                }
+            },
+            {
+                "name": "literal",
+                "scope": [
+                    "literal.scb"
+                ],
+                "settings": {
+                    "foreground": "#00ff00",
+                    "fontStyle" : ""
+                }
+            },
+            {
+                "name": "codeblock",
+                "scope": [
+                    "block.code.scb"
+                ],
+                "settings": {
+                    "foreground": "#006400",
                     "fontStyle" : ""
                 }
             }
