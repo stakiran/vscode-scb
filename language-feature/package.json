@@ -1,10 +1,11 @@
 {
 	"name": "vscodescb-language-features",
-	"displayName": "VSCode SCB Commands",
-	"description": "VSCode SCB commands for .scb files.",
+	"displayName": "vscode-scb Commands",
+	"description": "vscode-scb commands for .scb files.",
 	"publisher": "stakiran",
 	"repository": "https://github.com/stakiran/vscode-scb",
 	"version": "0.0.1",
+	"license": "MIT",
 	"engines": {
 		"vscode": "^1.51.0"
 	},
