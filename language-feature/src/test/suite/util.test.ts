@@ -1,5 +1,4 @@
 import * as assert from 'assert';
-import { before, beforeEach } from 'mocha';
 
 import { fixInvalidFilename } from '../../util';
 
