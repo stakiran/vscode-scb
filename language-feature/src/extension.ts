@@ -13,10 +13,6 @@ function abort(message: string) {
 	//throw new Error(`Error: ${message}`);
 }
 
-function infoDialog(message: string) {
-	vscode.window.showInformationMessage(message);
-}
-
 export function getSelfDirectory() {
 	const selfExtension = vscode.extensions.getExtension(SELF_EXTENSION_ID);
 	if (selfExtension === undefined) {
