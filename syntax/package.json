@@ -5,8 +5,9 @@
     "publisher": "stakiran",
     "repository": "https://github.com/stakiran/vscode-scb",
     "version": "0.0.1",
+    "license": "MIT",
     "engines": {
-        "vscode": "^1.36.0"
+        "vscode": "^1.51.0"
     },
     "categories": [
         "Programming Languages"
