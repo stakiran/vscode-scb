@@ -1,5 +1,4 @@
 {
-    "editor.renderWhitespace": "none",
     "files.associations": {
         "*.scb": "vscode-scb"
     },

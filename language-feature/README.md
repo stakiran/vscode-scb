@@ -4,8 +4,7 @@
 
 ```
 $ git clone https://scrapbox.io/sta/vscode-scb
-$ cd vscode-scb
-$ cd language-features
+$ cd vscode-scb/language-features
 $ npm install
 $ code .
 ```
@@ -30,7 +29,7 @@ unittest コードがあります。
 - 1: デバッグペインから Extension Tests を選ぶ
 - 2: F5 キーで実行する
 
-実行すると VSCode のウィンドウが立ち上がり、テストが実行され、終わったら自動で閉じてから OUTPUT にテスト結果を表示します。
+実行すると VSCode のウィンドウが立ち上がり、テストが実行されます（終わったら自動で閉じられます）。結果は DEBUG CONSOLE に表示されます。
 
 ### Build
 ルートの README を見てください。

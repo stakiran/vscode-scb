@@ -6,23 +6,11 @@
 $ vsce package
 ```
 
-## test
+## debug
+- 1: Press F5 key to start debug.
+- 2: Open any .scb file and check the hilight.
 
-### with vsix file
-
-```
-$ code --install-extension vscode-scb-0.0.1.vsix
-```
-
-VSCode の再起動をして scb ファイルを開き直す。あるいは ctrl + shift + x から installed の vscode-scb syntax を見つけて disable → enable をする（「Extension: vscode-scb syntax - syntax - Visual Studio Code」のタブを開いておくと便利）。
-
-## ノート
-
-```json
-    "editor.renderWhitespace": "none"
-```
-
-strikethrough はたぶん 1.36 よりだいぶ後なので対応エンジンは上げた方がいい
+In this regard, however, **you must write the configuration about filetype .scb to your settings.json**. See [settings.json](settings.json) and copy-paste it.
 
 ## Author
 [stakiran](https://github.com/stakiran)
