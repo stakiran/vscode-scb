@@ -8,9 +8,13 @@ function assertTrue(b: boolean){
 }
 
 suite('hello', () => {
-	before(() => {});
+	before(() => {
+		console.log('before on mocha');
+	});
 
-	beforeEach(() => {});
+	beforeEach(() => {
+		console.log('beforeEach on mocha');
+	});
 
 	test('hello1', async () => {
 		assertTrue(1==99-98)

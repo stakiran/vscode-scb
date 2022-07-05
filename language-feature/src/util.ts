@@ -31,12 +31,12 @@ function fixInvalidFilename(filename: string) {
 	const after = '_';
 	newFilename = newFilename.replace(/\\/g, after);
 	newFilename = newFilename.replace(/\//g, after);
-	newFilename = newFilename.replace(/\:/g, after);
+	newFilename = newFilename.replace(/:/g, after);
 	newFilename = newFilename.replace(/\*/g, after);
 	newFilename = newFilename.replace(/\?/g, after);
-	newFilename = newFilename.replace(/\"/g, after);
-	newFilename = newFilename.replace(/\>/g, after);
-	newFilename = newFilename.replace(/\</g, after);
+	newFilename = newFilename.replace(/"/g, after);
+	newFilename = newFilename.replace(/>/g, after);
+	newFilename = newFilename.replace(/</g, after);
 	newFilename = newFilename.replace(/\|/g, after);
 	// スペースはファイル名としては有効だが何かとウザイので潰す
 	newFilename = newFilename.replace(/ /g, after);

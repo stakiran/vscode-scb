@@ -2,7 +2,7 @@ import * as assert from 'assert';
 
 import { fixInvalidFilename } from '../../util';
 
-function eq(expect: any, actual: any){
+function eq(expect: string, actual: string){
 	return assert.strictEqual(expect, actual)
 }
 
