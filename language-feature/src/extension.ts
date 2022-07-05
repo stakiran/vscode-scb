@@ -4,7 +4,6 @@ import * as path from 'path';
 
 import * as util from './util';
 
-const isMacOS = process.platform == 'darwin';
 const SELF_EXTENSION_ID = 'stakiran.vscodescb-language-features';
 
 function abort(message: string) {
