@@ -1,10 +1,10 @@
 {
-    "name": "vscode-scb",
+    "name": "vscode-scb-syntax",
     "displayName": "vscode-scb syntax",
     "description": "vscode-scb syntax definition for .scb files.",
     "publisher": "stakiran",
     "repository": "https://github.com/stakiran/vscode-scb",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "license": "MIT",
     "engines": {
         "vscode": "^1.51.0"

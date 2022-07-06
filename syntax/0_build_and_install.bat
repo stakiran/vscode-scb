@@ -1,6 +1,6 @@
 @echo off
 setlocal
-set version=0.0.1
+set version=0.0.2
 
 call vsce package
-code --install-extension vscode-scb-%version%.vsix
+code --install-extension vscode-scb-syntax-%version%.vsix
