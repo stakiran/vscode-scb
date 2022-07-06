@@ -1,9 +1,14 @@
 # vscode-scb-language-features
 
-## 開発を始める
+## How to use
+See root page: https://github.com/stakiran/vscode-scb
+
+## Development
+
+### Start develop
 
 ```
-$ git clone https://scrapbox.io/sta/vscode-scb
+$ git clone https://github.com/stakiran/vscode-scb
 $ cd vscode-scb/language-features
 $ npm install
 $ code .
@@ -32,7 +37,10 @@ unittest コードがあります。
 実行すると VSCode のウィンドウが立ち上がり、テストが実行されます（終わったら自動で閉じられます）。結果は DEBUG CONSOLE に表示されます。
 
 ### Build
-ルートの README を見てください。
+
+```
+$ vsce package
+```
 
 ### Lint
 
@@ -40,7 +48,7 @@ unittest コードがあります。
 $ npm run lint -s
 ```
 
-### Pretty source
+### Pretty sources
 
 ```
 $ npm run pretty 
