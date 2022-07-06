@@ -1,4 +1,4 @@
-# vscode-scb-language-features
+# vscode-scb-commands
 
 ## How to use
 See root page: https://github.com/stakiran/vscode-scb

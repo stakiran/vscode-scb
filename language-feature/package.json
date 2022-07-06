@@ -1,5 +1,5 @@
 {
-	"name": "vscode-scb-language-features",
+	"name": "vscode-scb-commands",
 	"displayName": "vscode-scb commands",
 	"description": "vscode-scb commands for .scb files.",
 	"publisher": "stakiran",
