@@ -51,5 +51,9 @@ FYI: My scrapbox project is https://scrapbox.io/sta/ and over 10000+ pages.
 - <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>1</kbd>
     - Open link text as an existing or new file.
 
+You can customize your own combination. For example, <kbd>Shift</kbd> + <kbd>Enter</kbd>like this:
+
+![](https://user-images.githubusercontent.com/23325839/178083110-7459a456-c335-4880-a3f1-abe7e664a62f.png)
+
 ## Author
 [stakiran](https://github.com/stakiran)
