@@ -232,11 +232,19 @@ export async function newOrOpen() {
 	return Promise.resolve(true);
 }
 
+function showMenu() {
+	vscode.commands.executeCommand('editor.action.showContextMenu');
+}
+
 export function activate(context: vscode.ExtensionContext): void {
 	const _dummy_for_menu_separator = vscode.commands.registerCommand(
 		'vscodescb.dummy',
 		() => {} // eslint-disable-line @typescript-eslint/no-empty-function
 	);
+
+	const _show_menu = vscode.commands.registerCommand('vscodescb.menu.show', () => {
+		showMenu();
+	});
 
 	const _new_or_open = vscode.commands.registerCommand(
 		'vscodescb.neworopen',
@@ -245,5 +253,5 @@ export function activate(context: vscode.ExtensionContext): void {
 		}
 	);
 
-	context.subscriptions.push(_dummy_for_menu_separator, _new_or_open);
+	context.subscriptions.push(_dummy_for_menu_separator, _show_menu, _new_or_open);
 }

@@ -16,6 +16,7 @@
 	"activationEvents": [
 		"onLanguages:vscode-scb",
 		"onLanguages:plaintext",
+		"onCommand:vscodescb.menu.show",
 		"onCommand:vscodescb.neworopen"
 	],
 	"contributes": {
@@ -23,6 +24,11 @@
 			{
 				"command": "vscodescb.dummy",
 				"title": "================",
+				"category": "vscodescb"
+			},
+			{
+				"command": "vscodescb.menu.show",
+				"title": "Show menu",
 				"category": "vscodescb"
 			},
 			{
@@ -36,6 +42,10 @@
 				{
 					"command": "vscodescb.dummy",
 					"when": "resourceExtname == .DO_NOT_SHOW"
+				},
+				{
+					"command": "vscodescb.menu.show",
+					"when": "resourceExtname == .scb"
 				},
 				{
 					"command": "vscodescb.neworopen",
@@ -56,6 +66,12 @@
 			]
 		},
 		"keybindings": [
+			{
+				"command": "vscodescb.menu.show",
+				"key": "alt+m",
+				"mac": "ctrl+m",
+				"when": "resourceExtname == .scb"
+			},
 			{
 				"command": "vscodescb.neworopen",
 				"key": "ctrl+shift+1",
