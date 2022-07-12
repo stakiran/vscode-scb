@@ -26,6 +26,11 @@ function getFullpathOfActiveTextEditor() {
 	const fullpath = editor.document.uri.fsPath;
 	return fullpath;
 }
+function getFilenameOfActiveTextEditor() {
+	const fullpath = getFullpathOfActiveTextEditor();
+	const filename = path.basename(fullpath);
+	return filename;
+}
 
 export function getEditor() {
 	const editor = vscode.window.activeTextEditor;
@@ -236,15 +241,28 @@ function showMenu() {
 	vscode.commands.executeCommand('editor.action.showContextMenu');
 }
 
+function CopyAsLinkeeFilename() {
+	const filename = getFilenameOfActiveTextEditor();
+	// 開かれているファイルは .scb だと仮定する。
+	// 仮定するので末尾4文字を機械的に消す、で十分。
+	//const ext = path.extname(filename)
+	const basename = filename.slice(0, -4)
+	const basename_with_brachet = `[${basename}]`;
+	console.log(basename_with_brachet);
+}
+
 export function activate(context: vscode.ExtensionContext): void {
 	const _dummy_for_menu_separator = vscode.commands.registerCommand(
 		'vscodescb.dummy',
 		() => {} // eslint-disable-line @typescript-eslint/no-empty-function
 	);
 
-	const _show_menu = vscode.commands.registerCommand('vscodescb.menu.show', () => {
-		showMenu();
-	});
+	const _show_menu = vscode.commands.registerCommand(
+		'vscodescb.menu.show',
+		() => {
+			showMenu();
+		}
+	);
 
 	const _new_or_open = vscode.commands.registerCommand(
 		'vscodescb.neworopen',
@@ -253,5 +271,17 @@ export function activate(context: vscode.ExtensionContext): void {
 		}
 	);
 
-	context.subscriptions.push(_dummy_for_menu_separator, _show_menu, _new_or_open);
+	const _copy_linkeename = vscode.commands.registerCommand(
+		'vscodescb.copy.linkeename',
+		() => {
+			CopyAsLinkeeFilename();
+		}
+	);
+
+	context.subscriptions.push(
+		_dummy_for_menu_separator,
+		_show_menu,
+		_new_or_open,
+		_copy_linkeename
+	);
 }

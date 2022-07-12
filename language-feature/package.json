@@ -17,7 +17,9 @@
 		"onLanguages:vscode-scb",
 		"onLanguages:plaintext",
 		"onCommand:vscodescb.menu.show",
-		"onCommand:vscodescb.neworopen"
+		"onCommand:vscodescb.neworopen",
+		"onCommand:vscodescb.copy.linkeename"
+
 	],
 	"contributes": {
 		"commands": [
@@ -35,6 +37,11 @@
 				"command": "vscodescb.neworopen",
 				"title": "New or Open link",
 				"category": "vscodescb"
+			},
+			{
+				"command": "vscodescb.copy.linkeename",
+				"title": "Copy the filename with brackets",
+				"category": "vscodescb"
 			}
 		],
 		"menus": {
@@ -50,6 +57,10 @@
 				{
 					"command": "vscodescb.neworopen",
 					"when": "resourceExtname == .scb"
+				},
+				{
+					"command": "vscodescb.copy.linkeename",
+					"when": "resourceExtname == .scb"
 				}
 			],
 			"editor/context": [
@@ -60,6 +71,11 @@
 				},
 				{
 					"command": "vscodescb.neworopen",
+					"group": "navigation@20",
+					"when": "resourceExtname == .scb"
+				},
+				{
+					"command": "vscodescb.copy.linkeename",
 					"group": "navigation@20",
 					"when": "resourceExtname == .scb"
 				}
@@ -76,6 +92,12 @@
 				"command": "vscodescb.neworopen",
 				"key": "ctrl+shift+1",
 				"mac": "ctrl+shift+1",
+				"when": "resourceExtname == .scb"
+			},
+			{
+				"command": "vscodescb.copy.linkeename",
+				"key": "alt+c",
+				"mac": "ctrl+c",
 				"when": "resourceExtname == .scb"
 			}
 		]
