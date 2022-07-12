@@ -241,14 +241,14 @@ function showMenu() {
 	vscode.commands.executeCommand('editor.action.showContextMenu');
 }
 
-function CopyAsLinkeeFilename() {
+async function CopyAsLinkeeFilename() {
 	const filename = getFilenameOfActiveTextEditor();
 	// 開かれているファイルは .scb だと仮定する。
 	// 仮定するので末尾4文字を機械的に消す、で十分。
 	//const ext = path.extname(filename)
 	const basename = filename.slice(0, -4);
 	const basename_with_brachet = `[${basename}]`;
-	console.log(basename_with_brachet);
+	await vscode.env.clipboard.writeText(basename_with_brachet);
 }
 
 export function activate(context: vscode.ExtensionContext): void {
