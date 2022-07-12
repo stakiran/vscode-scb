@@ -125,7 +125,6 @@
 	},
 	"dependencies": {
 		"child_process": "^1.0.2",
-		"clipboardy": "^3.0.0",
 		"moment": "^2.29.1"
 	}
 }
