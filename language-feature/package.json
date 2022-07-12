@@ -19,7 +19,6 @@
 		"onCommand:vscodescb.menu.show",
 		"onCommand:vscodescb.neworopen",
 		"onCommand:vscodescb.copy.linkeename"
-
 	],
 	"contributes": {
 		"commands": [
@@ -126,6 +125,7 @@
 	},
 	"dependencies": {
 		"child_process": "^1.0.2",
+		"clipboardy": "^3.0.0",
 		"moment": "^2.29.1"
 	}
 }

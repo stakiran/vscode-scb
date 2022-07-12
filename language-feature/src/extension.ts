@@ -2,6 +2,8 @@ import * as vscode from 'vscode';
 
 import * as path from 'path';
 
+import clipboard from 'clipboardy';
+
 import * as util from './util';
 
 const SELF_EXTENSION_ID = 'stakiran.vscodescb-language-features';
@@ -246,9 +248,10 @@ function CopyAsLinkeeFilename() {
 	// 開かれているファイルは .scb だと仮定する。
 	// 仮定するので末尾4文字を機械的に消す、で十分。
 	//const ext = path.extname(filename)
-	const basename = filename.slice(0, -4)
+	const basename = filename.slice(0, -4);
 	const basename_with_brachet = `[${basename}]`;
-	console.log(basename_with_brachet);
+
+	clipboard.writeSync(basename_with_brachet);
 }
 
 export function activate(context: vscode.ExtensionContext): void {
