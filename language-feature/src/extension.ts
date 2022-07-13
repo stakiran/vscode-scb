@@ -252,7 +252,78 @@ async function CopyAsLinkeeFilename() {
 }
 
 function JumpToTopLevelLine(mode: string) {
-	console.log(mode);
+	const editor = getEditor();
+	const doc = editor.document;
+	const lineCount = doc.lineCount;
+	const curPos = CursorPositioner.current();
+
+	// 区切り行を自力で探す
+	// 区切り行
+	//  top level line
+	//  スペースインデントがない行 = 先頭がスペースでない行
+
+	const lineNumbersOfToplevelline = [];
+	for (let curLineNumber = 0; curLineNumber < lineCount; curLineNumber++) {
+		const line = doc.lineAt(curLineNumber).text;
+		if (line.length==0) {
+			continue;
+		}
+		if (line.charAt(0) == ' ') {
+			continue;
+		}
+		lineNumbersOfToplevelline.push(curLineNumber);
+	}
+	if (lineNumbersOfToplevelline.length == 0) {
+		return;
+	}
+
+	// x は処理対象外
+	// o は処理対象で、括弧内の行にジャンプの意
+	//
+	//          up       down
+	// ==== FOF
+	// Case1    x        o(1)
+	// -1-
+	// Case2    o(1)     o(2)
+	// -2-
+	// Case3    o(2)     o(3)
+	// -3-
+	// Case4    o(3)     x
+	// ==== EOF
+	//
+	// up(上の区切り)時は下から見ていって最初にヒットした区切りにジャンプ.
+	// down(下の区切り)時は上から見ていって最初にヒットした区切りにジャンプ.
+
+	let destLineNumber = -1;
+	if (mode == 'up') {
+		for (let i = lineNumbersOfToplevelline.length - 1; i >= 0; i--) {
+			const lineNumberofSeparator = lineNumbersOfToplevelline[i];
+			const cursorLineNumber = curPos.line;
+			if (lineNumberofSeparator < cursorLineNumber) {
+				destLineNumber = lineNumberofSeparator;
+				break;
+			}
+		}
+	} else if (mode == 'down') {
+		for (let i = 0; i < lineNumbersOfToplevelline.length; i++) {
+			const lineNumberofSeparator = lineNumbersOfToplevelline[i];
+			const cursorLineNumber = curPos.line;
+			if (cursorLineNumber < lineNumberofSeparator) {
+				destLineNumber = lineNumberofSeparator;
+				break;
+			}
+		}
+	}
+	if (destLineNumber == -1) {
+		return;
+	}
+
+	const newPos = curPos.with(destLineNumber, curPos.character);
+	const sel = new vscode.Selection(newPos, newPos);
+	editor.selection = sel;
+
+	const range = new vscode.Range(newPos, newPos);
+	editor.revealRange(range, vscode.TextEditorRevealType.Default);
 }
 
 export function activate(context: vscode.ExtensionContext): void {
@@ -285,13 +356,13 @@ export function activate(context: vscode.ExtensionContext): void {
 	const _jump_to_prev_toplevelline = vscode.commands.registerCommand(
 		'vscodescb.jump.toplevelline.prev',
 		() => {
-			JumpToTopLevelLine('prev');
+			JumpToTopLevelLine('up');
 		}
 	);
 	const _jump_to_next_toplevelline = vscode.commands.registerCommand(
 		'vscodescb.jump.toplevelline.next',
 		() => {
-			JumpToTopLevelLine('next');
+			JumpToTopLevelLine('down');
 		}
 	);
 
