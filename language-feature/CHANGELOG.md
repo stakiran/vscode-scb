@@ -1,5 +1,8 @@
 # Change Log
 
+## v0.2.0
+- Add 前後のトップレベル行（インデントしてない行）にジャンプする機能
+
 ## v0.1.1
 - Command not found エラーの修正
     - パッケージに node_modules を同梱する必要があった
