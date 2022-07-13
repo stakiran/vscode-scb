@@ -8,4 +8,5 @@ vsc-extension-quickstart.md
 **/tslint.json
 **/*.map
 **/*.ts
-node_modules
+# これがないと publish した拡張機能側で command not found が出る
+#node_modules
