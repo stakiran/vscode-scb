@@ -18,7 +18,9 @@
 		"onLanguages:plaintext",
 		"onCommand:vscodescb.menu.show",
 		"onCommand:vscodescb.neworopen",
-		"onCommand:vscodescb.copy.linkeename"
+		"onCommand:vscodescb.copy.linkeename",
+		"onCommand:vscodescb.jump.toplevelline.prev",
+		"onCommand:vscodescb.jump.toplevelline.nect"
 	],
 	"contributes": {
 		"commands": [
@@ -41,6 +43,16 @@
 				"command": "vscodescb.copy.linkeename",
 				"title": "Copy the filename with brackets",
 				"category": "vscodescb"
+			},
+			{
+				"command": "vscodescb.jump.toplevelline.prev",
+				"title": "Jump to prev top-level line",
+				"category": "vscodescb"
+			},
+			{
+				"command": "vscodescb.jump.toplevelline.next",
+				"title": "Jump to next top-level line",
+				"category": "vscodescb"
 			}
 		],
 		"menus": {
@@ -59,6 +71,14 @@
 				},
 				{
 					"command": "vscodescb.copy.linkeename",
+					"when": "resourceExtname == .scb"
+				},
+				{
+					"command": "vscodescb.jump.toplevelline.prev",
+					"when": "resourceExtname == .scb"
+				},
+				{
+					"command": "vscodescb.jump.toplevelline.next",
 					"when": "resourceExtname == .scb"
 				}
 			],
@@ -97,6 +117,18 @@
 				"command": "vscodescb.copy.linkeename",
 				"key": "alt+c",
 				"mac": "ctrl+c",
+				"when": "resourceExtname == .scb"
+			},
+			{
+				"command": "vscodescb.jump.toplevelline.prev",
+				"key": "alt+up",
+				"mac": "ctrl+up",
+				"when": "resourceExtname == .scb"
+			},
+			{
+				"command": "vscodescb.jump.toplevelline.next",
+				"key": "alt+down",
+				"mac": "ctrl+down",
 				"when": "resourceExtname == .scb"
 			}
 		]

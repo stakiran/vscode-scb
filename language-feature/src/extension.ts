@@ -251,6 +251,10 @@ async function CopyAsLinkeeFilename() {
 	await vscode.env.clipboard.writeText(basename_with_brachet);
 }
 
+function JumpToTopLevelLine(mode: string) {
+	console.log(mode);
+}
+
 export function activate(context: vscode.ExtensionContext): void {
 	const _dummy_for_menu_separator = vscode.commands.registerCommand(
 		'vscodescb.dummy',
@@ -278,10 +282,25 @@ export function activate(context: vscode.ExtensionContext): void {
 		}
 	);
 
+	const _jump_to_prev_toplevelline = vscode.commands.registerCommand(
+		'vscodescb.jump.toplevelline.prev',
+		() => {
+			JumpToTopLevelLine('prev');
+		}
+	);
+	const _jump_to_next_toplevelline = vscode.commands.registerCommand(
+		'vscodescb.jump.toplevelline.next',
+		() => {
+			JumpToTopLevelLine('next');
+		}
+	);
+
 	context.subscriptions.push(
 		_dummy_for_menu_separator,
 		_show_menu,
 		_new_or_open,
-		_copy_linkeename
+		_copy_linkeename,
+		_jump_to_prev_toplevelline,
+		_jump_to_next_toplevelline
 	);
 }
