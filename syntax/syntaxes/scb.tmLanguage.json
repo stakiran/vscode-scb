@@ -109,7 +109,7 @@
 
 		"codeblock": {
 			"begin": "(?<=^( )*)code\\:",
-			"end": "\\:c",
+			"end": "\\:c$",
 			"name": "block.code.scb"
 		},
 

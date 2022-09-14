@@ -4,7 +4,7 @@
     "description": "vscode-scb syntax definition for .scb files.",
     "publisher": "stakiran",
     "repository": "https://github.com/stakiran/vscode-scb",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "license": "MIT",
     "engines": {
         "vscode": "^1.51.0"
