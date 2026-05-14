@@ -15,8 +15,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onLanguages:vscode-scb",
-		"onLanguages:plaintext"
+		"onLanguage:vscode-scb",
+		"onLanguage:plaintext"
 	],
 	"contributes": {
 		"languages": [

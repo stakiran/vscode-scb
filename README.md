@@ -55,7 +55,13 @@ You can customize your own combination. For example, <kbd>Shift</kbd> + <kbd>Ent
 
 ![](https://user-images.githubusercontent.com/23325839/178083110-7459a456-c335-4880-a3f1-abe7e664a62f.png)
 
-## (For Developers) How to build and ship
+## (For Developers) How to develop
+compile:
+
+```
+$ npm run compile
+```
+
 build:
 
 ```
