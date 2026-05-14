@@ -55,5 +55,25 @@ You can customize your own combination. For example, <kbd>Shift</kbd> + <kbd>Ent
 
 ![](https://user-images.githubusercontent.com/23325839/178083110-7459a456-c335-4880-a3f1-abe7e664a62f.png)
 
+## (For Developers) How to build and ship
+build:
+
+```
+$ vsce package
+```
+
+install from vsix:
+
+```
+$ code --install-extension vscode-scb-VERSION.vsix
+```
+
+publish(author only):
+
+```
+$ vsce login stakiran (once)
+$ vsce publish
+```
+
 ## Author
 [stakiran](https://github.com/stakiran)
