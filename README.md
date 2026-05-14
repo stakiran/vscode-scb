@@ -37,8 +37,6 @@ Because:
 - I love Scrapbox!
 - Scrapbox like format is comfortable for writing roughly.
 
-FYI: My scrapbox project is https://scrapbox.io/sta/ and over 10000+ pages.
-
 ## How to use
 - Install the extension
     - [vscode-scb - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=stakiran.vscode-scb)
