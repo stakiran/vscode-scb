@@ -41,6 +41,11 @@ Because:
 - Install the extension
     - [vscode-scb - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=stakiran.vscode-scb)
     - Highlighting and editor defaults (1-space indent, no whitespace rendering, etc.) are applied automatically for `.scb` files.
+- (For users of v0.2.0 or earlier):
+    - Please uninstall the following (they have been merged into one from v0.3.0):
+        - [vscode-scb syntax - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=stakiran.vscode-scb-syntax)
+        - [vscode-scb commands - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=stakiran.vscode-scb-commands)
+    - Entries in `settings.json` are no longer required either, so feel free to remove them.
 
 ### Keyboard Shortcut
 - <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>1</kbd>
