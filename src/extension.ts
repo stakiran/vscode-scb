@@ -4,7 +4,7 @@ import * as path from 'path';
 
 import * as util from './util';
 
-const SELF_EXTENSION_ID = 'stakiran.vscodescb-language-features';
+const SELF_EXTENSION_ID = 'stakiran.vscode-scb';
 
 function abort(message: string) {
 	console.log(message);
