@@ -40,12 +40,10 @@ Because:
 FYI: My scrapbox project is https://scrapbox.io/sta/ and over 10000+ pages.
 
 ## How to use
-- 1: Install syntax
-    - [vscode-scb syntax - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=stakiran.vscode-scb-syntax)
+- Install the extension
+    - [vscode-scb - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=stakiran.vscode-scb)
     - And **Write the settings to your settings.json** because turning on hilight and so on.
-        - https://github.com/stakiran/vscode-scb/blob/master/syntax/settings.json
-- 2: Install commands
-    - [vscode-scb commands - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=stakiran.vscode-scb-commands)
+        - https://github.com/stakiran/vscode-scb/blob/master/settings.json
 
 ### Keyboard Shortcut
 - <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>1</kbd>
