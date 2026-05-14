@@ -326,7 +326,140 @@ function JumpToTopLevelLine(mode: string) {
 	editor.revealRange(range, vscode.TextEditorRevealType.Default);
 }
 
+const SCB_LANGUAGE_ID = 'vscode-scb';
+
+const INDENT_COLORS = [
+	'#add8e6', // lightblue
+	'#ffb6c1', // lightpink
+	'#ffffe0', // lightyellow
+	'#90ee90', // lightgreen
+];
+
+let indentDecorationTypes: vscode.TextEditorDecorationType[];
+let linkDecorationType: vscode.TextEditorDecorationType;
+let literalDecorationType: vscode.TextEditorDecorationType;
+let quoteDecorationType: vscode.TextEditorDecorationType;
+let codeblockDecorationType: vscode.TextEditorDecorationType;
+
+function buildCodeBlockSet(doc: vscode.TextDocument): Set<number> {
+	const set = new Set<number>();
+	let inCodeBlock = false;
+	for (let i = 0; i < doc.lineCount; i++) {
+		const text = doc.lineAt(i).text;
+		if (inCodeBlock) {
+			set.add(i);
+			if (/:c\s*$/.test(text)) {
+				inCodeBlock = false;
+			}
+		} else if (/^ *code:/.test(text)) {
+			set.add(i);
+			if (!/:c\s*$/.test(text)) {
+				inCodeBlock = true;
+			}
+		}
+	}
+	return set;
+}
+
+function updateDecorations(): void {
+	const editor = vscode.window.activeTextEditor;
+	if (!editor || editor.document.languageId !== SCB_LANGUAGE_ID) {
+		return;
+	}
+
+	const doc = editor.document;
+	const codeBlockLines = buildCodeBlockSet(doc);
+
+	const indentRanges: vscode.DecorationOptions[][] = INDENT_COLORS.map(() => []);
+	const linkRanges: vscode.DecorationOptions[] = [];
+	const literalRanges: vscode.DecorationOptions[] = [];
+	const quoteRanges: vscode.DecorationOptions[] = [];
+	const codeblockRanges: vscode.DecorationOptions[] = [];
+
+	for (let i = 0; i < doc.lineCount; i++) {
+		const lineText = doc.lineAt(i).text;
+
+		if (codeBlockLines.has(i)) {
+			codeblockRanges.push({ range: new vscode.Range(i, 0, i, lineText.length) });
+			continue;
+		}
+
+		const indentMatch = lineText.match(/^( +)/);
+		if (indentMatch) {
+			const len = indentMatch[1].length;
+			const colorIndex = (len - 1) % INDENT_COLORS.length;
+			indentRanges[colorIndex].push({ range: new vscode.Range(i, 0, i, len) });
+		}
+
+		if (/^ *>/.test(lineText)) {
+			quoteRanges.push({ range: new vscode.Range(i, 0, i, lineText.length) });
+			continue;
+		}
+
+		const linkRegex = /\[[^\]]+\]/g;
+		let lm: RegExpExecArray | null;
+		while ((lm = linkRegex.exec(lineText)) !== null) {
+			linkRanges.push({
+				range: new vscode.Range(i, lm.index, i, lm.index + lm[0].length),
+			});
+		}
+
+		const literalRegex = /`[^`]+`/g;
+		let ltm: RegExpExecArray | null;
+		while ((ltm = literalRegex.exec(lineText)) !== null) {
+			literalRanges.push({
+				range: new vscode.Range(i, ltm.index, i, ltm.index + ltm[0].length),
+			});
+		}
+	}
+
+	indentDecorationTypes.forEach((type, idx) => {
+		editor.setDecorations(type, indentRanges[idx]);
+	});
+	editor.setDecorations(linkDecorationType, linkRanges);
+	editor.setDecorations(literalDecorationType, literalRanges);
+	editor.setDecorations(quoteDecorationType, quoteRanges);
+	editor.setDecorations(codeblockDecorationType, codeblockRanges);
+}
+
 export function activate(context: vscode.ExtensionContext): void {
+	indentDecorationTypes = INDENT_COLORS.map((color) =>
+		vscode.window.createTextEditorDecorationType({
+			color,
+			textDecoration: 'line-through',
+		})
+	);
+	linkDecorationType = vscode.window.createTextEditorDecorationType({
+		color: '#a9ceec',
+	});
+	literalDecorationType = vscode.window.createTextEditorDecorationType({
+		color: '#00ff00',
+	});
+	quoteDecorationType = vscode.window.createTextEditorDecorationType({
+		color: '#c0c0c0',
+		fontStyle: 'italic',
+		fontWeight: 'bold',
+	});
+	codeblockDecorationType = vscode.window.createTextEditorDecorationType({
+		color: '#006400',
+	});
+
+	context.subscriptions.push(
+		...indentDecorationTypes,
+		linkDecorationType,
+		literalDecorationType,
+		quoteDecorationType,
+		codeblockDecorationType,
+		vscode.window.onDidChangeActiveTextEditor(() => updateDecorations()),
+		vscode.workspace.onDidChangeTextDocument((e) => {
+			if (e.document === vscode.window.activeTextEditor?.document) {
+				updateDecorations();
+			}
+		})
+	);
+
+	updateDecorations();
+
 	const _dummy_for_menu_separator = vscode.commands.registerCommand(
 		'vscodescb.dummy',
 		() => {} // eslint-disable-line @typescript-eslint/no-empty-function
