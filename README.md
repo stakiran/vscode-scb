@@ -48,7 +48,7 @@ Because:
     - Entries in `settings.json` are no longer required either, so feel free to remove them.
 
 ### Keyboard Shortcut
-- <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>1</kbd>
+- <kbd>Shift</kbd> + <kbd>Enter</kbd>
     - Open link text as an existing or new file.
 
 You can customize your own combination. For example, <kbd>Shift</kbd> + <kbd>Enter</kbd>like this:

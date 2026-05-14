@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.3.1
+- Fix 開いた直後にハイライトされないバグを修正
+- Fix ショートカットキーのデフォルトを shift+enter に設定
+
 ## v0.3.0
 - Tidy ディレクトリ構造をフラットにした
 - Modify settingsへの記載を不要にした
