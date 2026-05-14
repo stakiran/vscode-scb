@@ -42,8 +42,7 @@ FYI: My scrapbox project is https://scrapbox.io/sta/ and over 10000+ pages.
 ## How to use
 - Install the extension
     - [vscode-scb - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=stakiran.vscode-scb)
-    - And **Write the settings to your settings.json** because turning on hilight and so on.
-        - https://github.com/stakiran/vscode-scb/blob/master/settings.json
+    - Highlighting and editor defaults (1-space indent, no whitespace rendering, etc.) are applied automatically for `.scb` files.
 
 ### Keyboard Shortcut
 - <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>1</kbd>
