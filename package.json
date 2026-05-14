@@ -7,7 +7,7 @@
 	"version": "0.3.0",
 	"license": "MIT",
 	"engines": {
-		"vscode": "^1.51.0"
+		"vscode": "^1.75.0"
 	},
 	"main": "./out/extension.js",
 	"categories": [
@@ -16,12 +16,7 @@
 	],
 	"activationEvents": [
 		"onLanguages:vscode-scb",
-		"onLanguages:plaintext",
-		"onCommand:vscodescb.menu.show",
-		"onCommand:vscodescb.neworopen",
-		"onCommand:vscodescb.copy.linkeename",
-		"onCommand:vscodescb.jump.toplevelline.prev",
-		"onCommand:vscodescb.jump.toplevelline.next"
+		"onLanguages:plaintext"
 	],
 	"contributes": {
 		"languages": [
@@ -49,7 +44,7 @@
 				"editor.tabSize": 1,
 				"editor.insertSpaces": true,
 				"editor.detectIndentation": false,
-				"editor.wordBasedSuggestions": false
+				"editor.wordBasedSuggestions": "off"
 			}
 		},
 		"commands": [
