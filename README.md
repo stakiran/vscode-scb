@@ -63,31 +63,5 @@ print('hello.')
 
 ![](https://user-images.githubusercontent.com/23325839/178083110-7459a456-c335-4880-a3f1-abe7e664a62f.png)
 
-## (開発者向け) 開発方法
-compile:
-
-```
-$ npm run compile
-```
-
-build:
-
-```
-$ vsce package
-```
-
-install from vsix:
-
-```
-$ code --install-extension vscode-scb-VERSION.vsix
-```
-
-publish(author only):
-
-```
-$ vsce login stakiran (once)
-$ vsce publish
-```
-
 ## Author
 [stakiran](https://github.com/stakiran)
