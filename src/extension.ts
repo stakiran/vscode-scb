@@ -369,6 +369,42 @@ function buildCodeBlockSet(doc: vscode.TextDocument): Set<number> {
 	return set;
 }
 
+class ScbDocumentSymbolProvider implements vscode.DocumentSymbolProvider {
+	provideDocumentSymbols(
+		doc: vscode.TextDocument
+	): vscode.DocumentSymbol[] {
+		const codeBlockLines = buildCodeBlockSet(doc);
+		const symbols: vscode.DocumentSymbol[] = [];
+		for (let i = 0; i < doc.lineCount; i++) {
+			const text = doc.lineAt(i).text;
+			if (text.length === 0) {
+				continue;
+			}
+			if (text.charAt(0) === ' ') {
+				continue;
+			}
+			if (codeBlockLines.has(i)) {
+				continue;
+			}
+			// 孤立した :c 行（コードブロックに属さない）は意味がないのでスキップ.
+			if (/^:c\s*$/.test(text)) {
+				continue;
+			}
+			const range = new vscode.Range(i, 0, i, text.length);
+			symbols.push(
+				new vscode.DocumentSymbol(
+					text,
+					'',
+					vscode.SymbolKind.String,
+					range,
+					range
+				)
+			);
+		}
+		return symbols;
+	}
+}
+
 function updateDecorations(): void {
 	const editor = vscode.window.activeTextEditor;
 	if (!editor || editor.document.languageId !== SCB_LANGUAGE_ID) {
@@ -463,7 +499,11 @@ export function activate(context: vscode.ExtensionContext): void {
 			if (e.document === vscode.window.activeTextEditor?.document) {
 				updateDecorations();
 			}
-		})
+		}),
+		vscode.languages.registerDocumentSymbolProvider(
+			{ language: SCB_LANGUAGE_ID },
+			new ScbDocumentSymbolProvider()
+		)
 	);
 
 	updateDecorations();
