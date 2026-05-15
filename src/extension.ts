@@ -304,6 +304,10 @@ function JumpToTopLevelLine(mode: string) {
 				break;
 			}
 		}
+		// 見つからない=ファイル先頭側に居る。末尾の区切りへループ.
+		if (destLineNumber == -1) {
+			destLineNumber = lineNumbersOfToplevelline[lineNumbersOfToplevelline.length - 1];
+		}
 	} else if (mode == 'down') {
 		for (let i = 0; i < lineNumbersOfToplevelline.length; i++) {
 			const lineNumberofSeparator = lineNumbersOfToplevelline[i];
@@ -312,6 +316,10 @@ function JumpToTopLevelLine(mode: string) {
 				destLineNumber = lineNumberofSeparator;
 				break;
 			}
+		}
+		// 見つからない=ファイル末尾側に居る。先頭の区切りへループ.
+		if (destLineNumber == -1) {
+			destLineNumber = lineNumbersOfToplevelline[0];
 		}
 	}
 	if (destLineNumber == -1) {
