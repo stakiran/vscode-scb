@@ -1,12 +1,18 @@
 # vscode-scb
+VSCode 上で Scrapbox ライクにガシガシ書く。
+
 ![](https://user-images.githubusercontent.com/23325839/177752042-1d46bdee-99d5-4ea5-9761-4c9d6e145daa.gif)
 
-## What is vscode-scb?
-- [Scrapbox](https://scrapbox.io/) like format
-    - list, list and list
-    - 1-space indent
-    - `[single bracket]` to link to another file
-- `.scb` file
+## 特徴
+- [Scrapbox](https://scrapbox.io/) ライクなフォーマット
+    - 箇条書きベース
+    - 1-スペースインデント
+    - `[ブラケット一つ]` で別ファイルにリンクする
+- 素早い遷移
+    - <kbd>Shift</kbd> + <kbd>Enter</kbd> でリンク先を新規 or 既存なら開ける
+- .scb ファイルとしてつくります
+
+以下例:
 
 ```scb
 line
@@ -31,31 +37,33 @@ print('hello.')
   :c
 ```
 
-## Why scrapbox like format?
-Because:
+## なぜ Scrapbox ライクなのか？
+- Scrapbox が好きだから
+- 快適かつ雑に書きやすいから
+- Scrapbox で 2 万ページ以上書いてきたからこそ、このフォーマットの強さを知っているから
+- しかし Scrapbox はオフラインでは使えず、オフラインでは Markdown が主流だし、Obsidian も専用エディタかつ `[[ブラケットが二重]]` でイマイチだから
 
-- I love Scrapbox!
-- Scrapbox like format is comfortable for writing roughly.
-
-## How to use
-- Install the extension
+## 使い方
+- 拡張機能としてインストールできる
     - [vscode-scb - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=stakiran.vscode-scb)
-    - Highlighting and editor defaults (1-space indent, no whitespace rendering, etc.) are applied automatically for `.scb` files.
-- (For users of v0.2.0 or earlier):
-    - Please uninstall the following (they have been merged into one from v0.3.0):
+    - インストールすると、`.scb` ファイルに対してシンタックスハイライトその他機能が使えるようになります
+- (v0.2.0以前をお使いの方):
+    - 以下はアンインストールしてください（v0.3.0以降は統合されました）:
         - [vscode-scb syntax - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=stakiran.vscode-scb-syntax)
         - [vscode-scb commands - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=stakiran.vscode-scb-commands)
-    - Entries in `settings.json` are no longer required either, so feel free to remove them.
+    - `settings.json` への記載も不要になったので、消して OK です
 
-### Keyboard Shortcut
+### キーボードショートカット
 - <kbd>Shift</kbd> + <kbd>Enter</kbd>
-    - Open link text as an existing or new file.
+    - `[リンク]` から `リンク.scb` を開きます
+    - 存在しない場合は新規かつ未保存として開き、存在する場合はそのまま開きます
+    - Windows ファイル名としての対策も万全です: スペースと特殊文字は `_` に置換します
 
-You can customize your own combination. For example, <kbd>Shift</kbd> + <kbd>Enter</kbd>like this:
+カスタマイズしたければ、`vscodescb` でフィルタリングして各自設定してください:
 
 ![](https://user-images.githubusercontent.com/23325839/178083110-7459a456-c335-4880-a3f1-abe7e664a62f.png)
 
-## (For Developers) How to develop
+## (開発者向け) 開発方法
 compile:
 
 ```
