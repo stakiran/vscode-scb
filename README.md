@@ -53,13 +53,17 @@ print('hello.')
         - [vscode-scb commands - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=stakiran.vscode-scb-commands)
     - `settings.json` への記載も不要になったので、消して OK です
 
-### キーボードショートカット
-- <kbd>Shift</kbd> + <kbd>Enter</kbd>
-    - `[リンク]` から `リンク.scb` を開きます
+### 主な操作とショートカットキー
+- <kbd>Shift</kbd> + <kbd>Enter</kbd>: `[リンク]` から `リンク.scb` を開きます
     - 存在しない場合は新規かつ未保存として開き、存在する場合はそのまま開きます
     - Windows ファイル名としての対策も万全です: スペースと特殊文字は `_` に置換します
+    - またカーソルが `[ ]` 内になくても、近くのものに近づいて開きます（スマートジャンプ）
+- <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>N</kbd>: スクラッチページを新規作成します
+    - すぐに書き殴れるページを新規します
+    - ファイル名は `tmpXXXXXX.scb` 固定なので意識しなくて良いです
+    - ちゃんとリンク先とリンク元もセットします
 
-カスタマイズしたければ、`vscodescb` でフィルタリングして各自設定してください:
+他の操作（VSCode コマンド）もあります。ショートカットキーもカスタマイズできます。`vscodescb` でフィルタリングして各自設定してください:
 
 ![](https://user-images.githubusercontent.com/23325839/178083110-7459a456-c335-4880-a3f1-abe7e664a62f.png)
 
