@@ -92,44 +92,40 @@ function getStringBetweenBracket() {
 	const curX = curPos.character;
 	const currentLine = getCurrentLine();
 
-	let leftpos = -1;
-	let rightpos = -1;
-	// <-- 方向に [ がないかを調べる
-	let foundLeft = false;
-	for (let x = curX - 1; x >= 0; x--) {
-		const c = currentLine.charAt(x);
-		if (c == ']') {
-			break;
-		}
-		if (c == '[') {
-			foundLeft = true;
-			leftpos = x;
-			break;
-		}
-	}
-	// --> 方向に ] がないかを調べる
-	let foundRight = false;
-	for (let x = curX + 1; x < currentLine.length; x++) {
-		const c = currentLine.charAt(x);
-		if (c == '[') {
-			break;
-		}
-		if (c == ']') {
-			foundRight = true;
-			rightpos = x;
-			break;
-		}
+	// 行全体から [...] を全部拾い、二段階で選ぶ:
+	//   1. カーソルがブラケット内部 (両端含む) にあるものを優先
+	//   2. なければ、カーソルから最も近いもの
+	const linkRegex = /\[[^\]]+\]/g;
+	const brackets: { start: number; end: number; inner: string }[] = [];
+	let m: RegExpExecArray | null;
+	while ((m = linkRegex.exec(currentLine)) !== null) {
+		brackets.push({
+			start: m.index,
+			end: m.index + m[0].length,
+			inner: m[0].substring(1, m[0].length - 1),
+		});
 	}
 
-	const RESULT_IN_CASE_OF_NOTFOUND = '';
-	if (!foundLeft) {
-		return RESULT_IN_CASE_OF_NOTFOUND;
+	if (brackets.length == 0) {
+		return '';
 	}
-	if (!foundRight) {
-		return RESULT_IN_CASE_OF_NOTFOUND;
+
+	const inside = brackets.find((b) => b.start <= curX && curX <= b.end);
+	if (inside) {
+		return inside.inner;
 	}
-	const betweenString = currentLine.substring(leftpos + 1, rightpos);
-	return betweenString;
+
+	let nearest = brackets[0];
+	let nearestDist = Math.min(Math.abs(curX - nearest.start), Math.abs(curX - nearest.end));
+	for (let i = 1; i < brackets.length; i++) {
+		const b = brackets[i];
+		const d = Math.min(Math.abs(curX - b.start), Math.abs(curX - b.end));
+		if (d < nearestDist) {
+			nearest = b;
+			nearestDist = d;
+		}
+	}
+	return nearest.inner;
 }
 
 function constructTargetScbFullpath(maybeOpeneeFilename: string) {
