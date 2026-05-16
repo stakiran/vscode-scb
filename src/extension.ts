@@ -244,22 +244,33 @@ function generateTmpFilename(): string {
 
 async function newScratchPage() {
 	const editor = getEditor();
+
+	// P (リンク元) の名前を先に確保しておく。PN を開くと active editor が変わるため。
+	const parentFilename = getFilenameOfActiveTextEditor();
+	const parentBasename = parentFilename.slice(0, -4); // .scb を機械的に除去
+	const parentLinkLine = `[${parentBasename}]\n`;
+
 	const tmpName = generateTmpFilename();
-	const linkText = `[${tmpName}]`;
+	const tmpLinkText = `[${tmpName}]`;
 
 	const curPos = CursorPositioner.current();
 	const okEdit = await editor.edit((editBuilder) => {
-		editBuilder.insert(curPos, linkText);
+		editBuilder.insert(curPos, tmpLinkText);
 	});
 	if (!okEdit) {
 		return;
 	}
 
 	// 衝突 (tmpXXXXXX.scb が既存) 確率は 6 文字なら数千ファイルでも 0.023% 程度。
-	// 万一衝突した場合は既存ファイルが開かれるだけ。コマンド再実行で別名が生成される。
+	// 万一衝突した場合は既存ファイルが開かれるだけで、PN への backlink 書き込みもしない
+	// (既存内容を壊したくないため)。コマンド再実行で別名が生成される。
 	const targetFullpath = constructTargetScbFullpath(tmpName);
-	const okSmartOpen = await smartopenIfDoesnotExists(targetFullpath);
-	if (okSmartOpen) {
+	const newEditorOrFalse = await smartopenIfDoesnotExists(targetFullpath);
+	if (newEditorOrFalse) {
+		const newEditor = newEditorOrFalse as vscode.TextEditor;
+		await newEditor.edit((eb) => {
+			eb.insert(new vscode.Position(0, 0), parentLinkLine);
+		});
 		return;
 	}
 	await openExistingFile(targetFullpath);
