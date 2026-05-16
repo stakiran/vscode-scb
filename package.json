@@ -64,6 +64,11 @@
 				"category": "vscodescb"
 			},
 			{
+				"command": "vscodescb.new.tmp",
+				"title": "New scratch page",
+				"category": "vscodescb"
+			},
+			{
 				"command": "vscodescb.copy.linkeename",
 				"title": "Copy the filename with brackets",
 				"category": "vscodescb"
@@ -91,6 +96,10 @@
 				},
 				{
 					"command": "vscodescb.neworopen",
+					"when": "resourceExtname == .scb"
+				},
+				{
+					"command": "vscodescb.new.tmp",
 					"when": "resourceExtname == .scb"
 				},
 				{
@@ -135,6 +144,12 @@
 				"command": "vscodescb.neworopen",
 				"key": "shift+enter",
 				"mac": "shift+enter",
+				"when": "resourceExtname == .scb"
+			},
+			{
+				"command": "vscodescb.new.tmp",
+				"key": "ctrl+alt+n",
+				"mac": "ctrl+alt+n",
 				"when": "resourceExtname == .scb"
 			},
 			{

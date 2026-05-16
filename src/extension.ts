@@ -233,6 +233,38 @@ export async function newOrOpen() {
 	return Promise.resolve(true);
 }
 
+function generateTmpFilename(): string {
+	const chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+	let suffix = '';
+	for (let i = 0; i < 6; i++) {
+		suffix += chars.charAt(Math.floor(Math.random() * chars.length));
+	}
+	return `tmp${suffix}`;
+}
+
+async function newScratchPage() {
+	const editor = getEditor();
+	const tmpName = generateTmpFilename();
+	const linkText = `[${tmpName}]`;
+
+	const curPos = CursorPositioner.current();
+	const okEdit = await editor.edit((editBuilder) => {
+		editBuilder.insert(curPos, linkText);
+	});
+	if (!okEdit) {
+		return;
+	}
+
+	// 衝突 (tmpXXXXXX.scb が既存) 確率は 6 文字なら数千ファイルでも 0.023% 程度。
+	// 万一衝突した場合は既存ファイルが開かれるだけ。コマンド再実行で別名が生成される。
+	const targetFullpath = constructTargetScbFullpath(tmpName);
+	const okSmartOpen = await smartopenIfDoesnotExists(targetFullpath);
+	if (okSmartOpen) {
+		return;
+	}
+	await openExistingFile(targetFullpath);
+}
+
 function showMenu() {
 	vscode.commands.executeCommand('editor.action.showContextMenu');
 }
@@ -523,6 +555,13 @@ export function activate(context: vscode.ExtensionContext): void {
 		}
 	);
 
+	const _new_tmp = vscode.commands.registerCommand(
+		'vscodescb.new.tmp',
+		() => {
+			newScratchPage();
+		}
+	);
+
 	const _copy_linkeename = vscode.commands.registerCommand(
 		'vscodescb.copy.linkeename',
 		() => {
@@ -547,6 +586,7 @@ export function activate(context: vscode.ExtensionContext): void {
 		_dummy_for_menu_separator,
 		_show_menu,
 		_new_or_open,
+		_new_tmp,
 		_copy_linkeename,
 		_jump_to_prev_toplevelline,
 		_jump_to_next_toplevelline
